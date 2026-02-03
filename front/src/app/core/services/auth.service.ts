@@ -13,12 +13,10 @@ export class AuthService {
   private readonly apiUrl = environment.apiUrl;
   private readonly LOCAL_STORAGE = { TOKEN: 'token' } as const;
   private readonly API_ENDPOINT = { AUTH: 'auth' } as const;
-  private readonly usuarioLogado = new BehaviorSubject<UsuarioToken | null>(
-    null
-  );
+  private readonly usuarioLogado = new BehaviorSubject<UsuarioToken | null>(null);
   private readonly perfil = new BehaviorSubject<PerfilEnum | null>(null);
   public token$ = new BehaviorSubject<string | null>(
-    localStorage.getItem(this.LOCAL_STORAGE.TOKEN)
+    localStorage.getItem(this.LOCAL_STORAGE.TOKEN),
   );
 
   public readonly usuarioLogado$ = this.usuarioLogado.asObservable();
@@ -26,7 +24,7 @@ export class AuthService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly router: Router
+    private readonly router: Router,
   ) {
     this.carregarTokenDoStorage();
   }
@@ -39,7 +37,7 @@ export class AuthService {
       catchError((error) => {
         console.error('Erro no login:', error);
         return throwError(() => error);
-      })
+      }),
     );
   }
 
@@ -116,50 +114,32 @@ export class AuthService {
     return this.temAcesso(PerfilEnum.ADMINISTRADOR);
   }
 
-  public isLiderDesenvolvimento(): boolean {
-    return this.temAcesso(PerfilEnum.LIDER_DESENVOLVIMENTO);
+  public isSecretaria(): boolean {
+    return this.temAcesso(PerfilEnum.SECRETARIA);
   }
 
-  public isLiderNegocio(): boolean {
-    return this.temAcesso(PerfilEnum.LIDER_NEGOCIO);
+  public isSecretariaExecutiva(): boolean {
+    return this.temAcesso(PerfilEnum.SECRETARIA_EXECUTIVA);
   }
 
-  public isDesenvolvedor(): boolean {
-    return this.temAcesso(PerfilEnum.DESENVOLVEDOR);
-  }
-
-  public isAnalista(): boolean {
-    return this.temAcesso(PerfilEnum.ANALISTA_NEGOCIO);
-  }
-
-  public isGeralLider(): boolean {
-    return this.temAcesso(
-      PerfilEnum.LIDER_DESENVOLVIMENTO,
-      PerfilEnum.LIDER_NEGOCIO
-    );
-  }
-
-  public isGeralMembro(): boolean {
-    return this.temAcesso(
-      PerfilEnum.DESENVOLVEDOR,
-      PerfilEnum.ANALISTA_NEGOCIO
-    );
-  }
-
-  public podeGerenciarSquads(): boolean {
-    return this.isAdmin() || this.isGeralLider();
+  public isUsuario(): boolean {
+    return this.temAcesso(PerfilEnum.USUARIO);
   }
 
   public podeAcessarAreaAdmin(): boolean {
     return this.isAdmin();
   }
 
-  public podeAcessarAreaLider(): boolean {
-    return this.isGeralLider();
+  public podeAcessarAreaSecretaria(): boolean {
+    return this.isSecretaria();
+  }
+
+  public podeAcessarAreaSecretariaExecutiva(): boolean {
+    return this.isSecretariaExecutiva();
   }
 
   public podeAcessarAreaUsuario(): boolean {
-    return this.isAdmin() || this.isGeralLider() || this.isGeralMembro();
+    return this.isUsuario();
   }
 
   public logout(): void {
@@ -170,10 +150,10 @@ export class AuthService {
   public redirecionarComBaseNoPerfil(): void {
     if (this.isAdmin()) {
       this.router.navigate(['/administracao/dashboard']);
-    } else if (this.isGeralLider()) {
-      this.router.navigate(['/lideranca/dashboard']);
-    } else if (this.isGeralMembro()) {
-      this.router.navigate(['/membro/dashboard']);
+    } else if (this.isSecretaria()) {
+      this.router.navigate(['/secretaria/dashboard']);
+    } else if (this.isSecretariaExecutiva()) {
+      this.router.navigate(['/secretaria-executiva/dashboard']);
     } else {
       this.logout();
     }

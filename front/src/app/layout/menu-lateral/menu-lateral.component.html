@@ -1,0 +1,14 @@
+<mat-nav-list class="barra-navegacao">
+  <ng-container *ngFor="let botao of botoesMenu; let i = index">
+    <mat-list-item [routerLink]="botao.rota" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      class="item-menu" [style.animation-delay.ms]="i * 100" [disableRipple]="true">
+      <div class="barra-menus">
+        <div class="barra-icones">
+          <mat-icon class="icone">{{ botao.icone }}</mat-icon>
+        </div>
+        <span class="menu-titulo">{{ botao.titulo }}</span>
+        <mat-icon class="indicador">chevron_right</mat-icon>
+      </div>
+    </mat-list-item>
+  </ng-container>
+</mat-nav-list>
