@@ -20,8 +20,8 @@ import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
 
 @Component({
-  selector: 'app-gerenciar-perfil',
-  templateUrl: './gerenciar-perfil.component.html',
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
   standalone: true,
   imports: [
     ErrosFormularioComponent,
@@ -36,9 +36,9 @@ import { DateTime } from 'luxon';
     MatIconModule,
     CommonModule,
   ],
-  styleUrls: ['./gerenciar-perfil.component.scss'],
+  styleUrls: ['./perfil.component.scss'],
 })
-export class GerenciarPerfilComponent extends CamposFormularioComponent implements OnInit {
+export class PerfilComponent extends CamposFormularioComponent implements OnInit {
   public listaPerfilEnum = PerfilEnum.getAll();
   public ehEdicao: boolean = false;
   public mostrarConfirmarSenha: boolean = false;
@@ -82,7 +82,6 @@ export class GerenciarPerfilComponent extends CamposFormularioComponent implemen
   public preencherFormulario(): void {
     this.authService.usuarioLogado$.subscribe({
       next: (usuario) => {
-        console.log("💡=> => GerenciarPerfilComponent => preencherFormulario => usuario:", usuario)
         if (usuario?.dataCriacao) {
           usuario.dataCriacao = DateTime.fromISO(usuario.dataCriacao)
             .setLocale('pt-BR')
