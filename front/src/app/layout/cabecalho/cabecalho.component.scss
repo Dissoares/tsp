@@ -1,8 +1,8 @@
 .cabecalho {
-  background: #005f73;
+  background: linear-gradient(180deg, #0f514d 0%, #13655f 100%);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 0 24px;
-  height: 70px;
+  height: 80px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -194,9 +194,11 @@
   0% {
     box-shadow: 0 0 0 0 rgba(84, 0, 0, 0.7);
   }
+
   70% {
     box-shadow: 0 0 0 5px rgba(111, 0, 0, 0.085);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
   }

@@ -1,10 +1,8 @@
-import { MenuLateralComponent } from '../menu-lateral/menu-lateral.component';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CabecalhoComponent } from '../cabecalho/cabecalho.component';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RodapeComponent } from '../rodape/rodape.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,11 +13,9 @@ import { CommonModule } from '@angular/common';
   selector: 'app-conteudo',
   standalone: true,
   imports: [
-    MenuLateralComponent,
     CabecalhoComponent,
     MatToolbarModule,
     MatSidenavModule,
-    RodapeComponent,
     MatCardModule,
     MatIconModule,
     CommonModule,

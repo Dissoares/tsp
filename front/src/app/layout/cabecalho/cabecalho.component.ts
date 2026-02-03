@@ -40,10 +40,6 @@ export class CabecalhoComponent implements OnInit, OnDestroy {
     this.pararContador();
   }
 
-  public ativarBarraLateral(): void {
-    this.ativarSidebar.emit();
-  }
-
   public carregarUsuarioLogado(): void {
     this.authService.usuarioLogado$.subscribe((usuario) => {
       if (usuario) {
