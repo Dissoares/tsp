@@ -71,14 +71,12 @@ export class CabecalhoComponent implements OnInit, OnDestroy {
     this.router.navigate(['/perfil']);
   }
 
-  public abrirConfiguracoes(): void {}
+
 
   public alterarSenha(): void {
-    if (this.authService.isAdmin()) {
-      this.router.navigate(['/administracao/perfil'], {
-        queryParams: { ehEdicao: true },
-      });
-    }
+    this.router.navigate(['/perfil'], {
+      queryParams: { ehEdicao: true },
+    });
   }
 
   public logout(): void {

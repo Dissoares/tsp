@@ -148,14 +148,6 @@ export class AuthService {
   }
 
   public redirecionarComBaseNoPerfil(): void {
-    if (this.isAdmin()) {
-      this.router.navigate(['/administracao/dashboard']);
-    } else if (this.isSecretaria()) {
-      this.router.navigate(['/secretaria/dashboard']);
-    } else if (this.isSecretariaExecutiva()) {
-      this.router.navigate(['/secretaria-executiva/dashboard']);
-    } else {
-      this.logout();
-    }
+    this.router.navigate(['/']);
   }
 }

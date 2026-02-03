@@ -2,6 +2,7 @@ import {
   CamposFormularioComponent,
   ErrosFormularioComponent,
 } from '../../../core/components/index.component';
+import { CabecalhoComponent } from '../../../layout/cabecalho/cabecalho.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,6 +25,7 @@ import { DateTime } from 'luxon';
   standalone: true,
   imports: [
     ErrosFormularioComponent,
+    CabecalhoComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatToolbarModule,
