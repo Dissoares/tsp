@@ -7,14 +7,20 @@ export class RotasEnum {
     FORMULARIO: 'formulario',
   };
 
-  static readonly LIDER = {
-    ROTA: 'lideranca',
+  static readonly SECRETARIA = {
+    ROTA: 'secretaria',
     LISTAGEM: 'listagem',
     FORMULARIO: 'formulario',
   };
 
-  static readonly MEMBRO = {
-    ROTA: 'squad',
+  static readonly SECRETARIA_EXECUTIVA = {
+    ROTA: 'secretaria-executiva',
+    LISTAGEM: 'listagem',
+    FORMULARIO: 'formulario',
+  };
+
+  static readonly USUARIO = {
+    ROTA: 'usuario',
     LISTAGEM: 'listagem',
     FORMULARIO: 'formulario',
   };

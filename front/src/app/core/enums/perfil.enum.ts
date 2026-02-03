@@ -1,25 +1,16 @@
 export class PerfilEnum {
   public static ADMINISTRADOR = new PerfilEnum(1, 'Administrador');
-  public static LIDER_DESENVOLVIMENTO = new PerfilEnum(2,'Líder de desenvolvimento');
-  public static LIDER_NEGOCIO = new PerfilEnum(3, 'Líder de negócio');
-  public static DESENVOLVEDOR = new PerfilEnum(4, 'Desenvolvedor');
-  public static ANALISTA_NEGOCIO = new PerfilEnum(5, 'Analista de negócio');
-  public static REPRESENTANTE_AREA = new PerfilEnum(6,'Representante de setor');
+  public static SECRETARIA = new PerfilEnum(2, 'SECRETARIA');
+  public static SECRETARIA_EXECUTIVA = new PerfilEnum(3, 'SECRETARIA EXECUTIVA');
+  public static USUARIO = new PerfilEnum(4, 'USUARIO');
 
   private constructor(
     public readonly id: number,
-    public readonly descricao: string
+    public readonly descricao: string,
   ) {}
 
   public static getAll(): Array<PerfilEnum> {
-    return [
-      this.ADMINISTRADOR,
-      this.LIDER_NEGOCIO,
-      this.LIDER_DESENVOLVIMENTO,
-      this.ANALISTA_NEGOCIO,
-      this.DESENVOLVEDOR,
-      this.REPRESENTANTE_AREA,
-    ];
+    return [this.ADMINISTRADOR, this.SECRETARIA, this.SECRETARIA_EXECUTIVA, this.USUARIO];
   }
 
   public static getById(id: number): PerfilEnum | undefined {
