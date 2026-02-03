@@ -5,6 +5,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AuthService, UsuarioService } from '../core/services';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Component, OnInit, inject } from '@angular/core';
@@ -25,6 +26,7 @@ import { Usuario } from '../core/models';
     ErrosFormularioComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     MatButtonModule,
     MatSelectModule,
     MatInputModule,

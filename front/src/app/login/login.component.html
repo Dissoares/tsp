@@ -1,62 +1,86 @@
 <div class="auth-container">
-  <div class="auth-image"></div>
+  <div class="auth-info">
+    <div class="info-content">
+      <div class="logo">
+        <mat-icon>account_balance</mat-icon>
+        <h1>GEPES</h1>
+      </div>
+      <h2>Gestão de Projetos Estratégicos da SESA</h2>
+      <p class="description">
+        Sistema integrado para gestão centralizada de projetos estratégicos da Secretaria de Saúde
+        do Estado, garantindo eficiência, transparência e alinhamento com as metas institucionais.
+      </p>
+      <div class="features">
+        <div class="feature-item">
+          <mat-icon>hub</mat-icon>
+          <span>Gestão Centralizada</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>account_tree</mat-icon>
+          <span>Fluxo Institucional</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>visibility</mat-icon>
+          <span>Acompanhamento e Transparência</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="auth-form">
     <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <mat-icon>{{ ehCadastro ? "person_add" : "login" }}</mat-icon>
-          {{ ehCadastro ? "Cadastro" : "Login" }}
-        </mat-card-title>
-      </mat-card-header>
+      <div class="login-header">
+        <h1>Fazer Login</h1>
+        <p>Acessar o GEPES</p>
+      </div>
 
       <form [formGroup]="formulario" (ngSubmit)="ehCadastro ? cadastrar() : login()">
-        <mat-form-field appearance="outline" floatLabel="always" class="field-4" *ngIf="ehCadastro">
+        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
           <mat-label>Nome</mat-label>
           <mat-icon matPrefix>badge</mat-icon>
-          <input matInput formControlName="nome" />
+          <input matInput formControlName="nome" placeholder="Digite seu nome" />
           <mat-error>
             <app-erro [dadosCampo]="formulario.get('nome')"></app-erro>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" floatLabel="always" class="field-4">
+        <mat-form-field appearance="outline" class="login-field">
           <mat-label>E-mail</mat-label>
-          <mat-icon matPrefix>alternate_email</mat-icon>
-          <input matInput type="email" formControlName="email" />
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput type="email" formControlName="email" placeholder="Digite seu e-mail" />
+          <mat-hint>Use seu institucional cadastrado</mat-hint>
           <mat-error>
             <app-erro [dadosCampo]="formulario.get('email')"></app-erro>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" floatLabel="always" class="field-4">
+        <mat-form-field appearance="outline" class="login-field">
           <mat-label>Senha</mat-label>
           <mat-icon matPrefix>lock</mat-icon>
-          <input matInput [type]="mostrarSenha ? 'text' : 'password'" formControlName="senha" />
+          <input matInput [type]="mostrarSenha ? 'text' : 'password'" formControlName="senha"
+            placeholder="Digite sua senha" />
           <button mat-icon-button matSuffix (click)="mostrarSenha = !mostrarSenha" type="button">
-            <mat-icon>{{
-              mostrarSenha ? "visibility_off" : "visibility"
-              }}</mat-icon>
+            <mat-icon>{{ mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
           <mat-error>
             <app-erro [dadosCampo]="formulario.get('senha')"></app-erro>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" floatLabel="always" class="field-4" *ngIf="ehCadastro">
+        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
           <mat-label>Repita Senha</mat-label>
           <mat-icon matPrefix>lock</mat-icon>
-          <input matInput [type]="mostrarConfirmarSenha ? 'text' : 'password'" formControlName="confirmarSenha" />
+          <input matInput [type]="mostrarConfirmarSenha ? 'text' : 'password'" formControlName="confirmarSenha"
+            placeholder="Digite sua senha novamente" />
           <button mat-icon-button matSuffix (click)="mostrarConfirmarSenha = !mostrarConfirmarSenha" type="button">
-            <mat-icon>{{
-              mostrarConfirmarSenha ? "visibility_off" : "visibility"
-              }}</mat-icon>
+            <mat-icon>{{ mostrarConfirmarSenha ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
           <mat-error>
             <app-erro [dadosCampo]="formulario.get('confirmarSenha')"></app-erro>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" floatLabel="always" class="field-4" *ngIf="ehCadastro">
+        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
           <mat-label>Perfil</mat-label>
           <mat-icon matPrefix>person</mat-icon>
           <mat-select formControlName="perfil">
@@ -69,20 +93,25 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-card-actions style="display: flex; align-self: center">
-          <button type="submit" mat-flat-button class="btn-primary" [disabled]="formulario.invalid">
-            <mat-icon>{{ ehCadastro ? "person_add" : "login" }}</mat-icon>
-            {{ ehCadastro ? "Cadastrar" : "Acessar" }}
-          </button>
+        <div class="form-options">
+          <mat-checkbox class="remember-checkbox">Lembrar de mim</mat-checkbox>
+          <a href="#" class="forgot-password">Esqueci minha senha</a>
+        </div>
 
-          <button type="button" mat-stroked-button class="btn-secondary" (click)="ehCadastro = !ehCadastro">
-            <mat-icon>{{ ehCadastro ? "login" : "person_add" }}</mat-icon>
-            {{ ehCadastro ? "Acessar" : "Cadastrar" }}
-          </button>
-        </mat-card-actions>
+        <button type="submit" mat-flat-button class="login-button" [disabled]="formulario.invalid">
+          {{ ehCadastro ? 'Cadastrar' : 'Entrar' }}
+          <mat-icon>{{ ehCadastro ? 'person_add' : 'arrow_forward' }}</mat-icon>
+        </button>
+
+        <button type="button" mat-stroked-button class="login-button" (click)="ehCadastro = !ehCadastro">
+          {{ ehCadastro ? 'Acessar' : 'Cadastrar' }}
+          <mat-icon>{{ ehCadastro ? 'login' : 'person_add' }}</mat-icon>
+        </button>
       </form>
+
+      <div class="login-footer">
+        <p>Uso exclusivo de servidores da SESA</p>
+      </div>
     </mat-card>
   </div>
-
-
 </div>
