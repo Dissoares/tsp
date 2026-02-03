@@ -4,14 +4,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import br.gov.ce.saude.gepes.domains.repository.UsuarioRepository;
 import org.springframework.security.core.Authentication;
-import br.gov.ce.saude.gepes.api.dto.FiltroUsuarioDTO;
 import br.gov.ce.saude.gepes.domains.entities.Usuario;
-import br.gov.ce.saude.gepes.api.dto.UsuarioDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Sort;
 import lombok.AllArgsConstructor;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @Service

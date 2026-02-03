@@ -4,11 +4,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import br.gov.ce.saude.gepes.domains.service.UsuarioService;
 import br.gov.ce.saude.gepes.domains.entities.Usuario;
 import org.springframework.web.bind.annotation.*;
-import br.gov.ce.saude.gepes.api.dto.UsuarioDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import lombok.AllArgsConstructor;
-import java.util.List;
 
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
