@@ -24,6 +24,15 @@
           <span>Acompanhamento e Transparência</span>
         </div>
       </div>
+      <div class="footer-logos">
+        <div class="logo-item">
+          <span class="logo-text">Saúde Digital</span>
+        </div>
+        <div class="logo-item">
+          <span class="logo-text">CEARÁ</span>
+          <span class="logo-subtitle">GOVERNO DO ESTADO</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -99,13 +108,8 @@
         </div>
 
         <button type="submit" mat-flat-button class="login-button" [disabled]="formulario.invalid">
-          {{ ehCadastro ? 'Cadastrar' : 'Entrar' }}
-          <mat-icon>{{ ehCadastro ? 'person_add' : 'arrow_forward' }}</mat-icon>
-        </button>
-
-        <button type="button" mat-stroked-button class="login-button" (click)="ehCadastro = !ehCadastro">
-          {{ ehCadastro ? 'Acessar' : 'Cadastrar' }}
-          <mat-icon>{{ ehCadastro ? 'login' : 'person_add' }}</mat-icon>
+          Entrar
+          <mat-icon>arrow_forward</mat-icon>
         </button>
       </form>
 
