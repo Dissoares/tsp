@@ -1,0 +1,104 @@
+import {
+  CamposFormularioComponent,
+  ErrosFormularioComponent,
+} from '../../../core/components/index.component';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { Component, inject, OnInit } from '@angular/core';
+import { MatInputModule } from '@angular/material/input';
+import { UsuarioToken } from '../../../core/interfaces';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../../core/services';
+import { ActivatedRoute } from '@angular/router';
+import { PerfilEnum } from '../../../core/enums';
+import { CommonModule } from '@angular/common';
+import { DateTime } from 'luxon';
+
+@Component({
+  selector: 'app-gerenciar-perfil',
+  templateUrl: './gerenciar-perfil.component.html',
+  standalone: true,
+  imports: [
+    ErrosFormularioComponent,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
+    MatCardModule,
+    MatIconModule,
+    CommonModule,
+  ],
+  styleUrls: ['./gerenciar-perfil.component.scss'],
+})
+export class GerenciarPerfilComponent extends CamposFormularioComponent implements OnInit {
+  public listaPerfilEnum = PerfilEnum.getAll();
+  public ehEdicao: boolean = false;
+  public mostrarConfirmarSenha: boolean = false;
+  public mostrarSenha: boolean = false;
+  public ehCadastro: boolean = false;
+
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+  ) {
+    super(inject(FormBuilder));
+  }
+
+  public ngOnInit(): void {
+    this.criarFormulario();
+    this.preencherFormulario();
+
+    this.route.queryParams.subscribe((dados: any) => {
+      if (dados['ehEdicao']) {
+        this.ehEdicao = true;
+        this.formulario.get('senha')?.enable();
+        this.formulario.get('confirmarSenha')?.enable();
+      } else {
+        this.ehEdicao = false;
+        this.formulario.disable();
+      }
+    });
+  }
+
+  private criarFormulario(): void {
+    this.formulario = this.fb.group({
+      nome: [null],
+      email: [null],
+      perfil: [null],
+      dataCriacao: [null],
+      senha: [null],
+      confirmarSenha: [null],
+    });
+  }
+
+  public preencherFormulario(): void {
+    this.authService.usuarioLogado$.subscribe({
+      next: (usuario) => {
+        console.log("💡=> => GerenciarPerfilComponent => preencherFormulario => usuario:", usuario)
+        if (usuario?.dataCriacao) {
+          usuario.dataCriacao = DateTime.fromISO(usuario.dataCriacao)
+            .setLocale('pt-BR')
+            .toFormat('dd/MM/yyyy');
+        }
+
+        this.formulario.patchValue(usuario as UsuarioToken);
+        this.desabilitarFormulario();
+      },
+      error: (erro) => {
+        console.log(erro);
+      },
+    });
+  }
+
+  public editarDadosPerfil(): void {
+    this.preencherFormulario();
+    this.habilitarFormulario();
+    this.ehEdicao = true;
+  }
+}

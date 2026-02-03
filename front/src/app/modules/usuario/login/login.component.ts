@@ -1,11 +1,12 @@
 import {
   CamposFormularioComponent,
   ErrosFormularioComponent,
-} from '../core/components/index.component';
+} from '../../../core/components/index.component';
+import { AuthService, UsuarioService } from '../../../core/services';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { AuthService, UsuarioService } from '../core/services';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { campoObrigatorio } from '../../../core/validators';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Component, OnInit, inject } from '@angular/core';
@@ -13,11 +14,10 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { campoObrigatorio } from '../core/validators';
+import { PerfilEnum } from '../../../core/enums';
 import { CommonModule } from '@angular/common';
-import { PerfilEnum } from '../core/enums';
+import { Usuario } from '../../../core/models';
 import { ToastrService } from 'ngx-toastr';
-import { Usuario } from '../core/models';
 
 @Component({
   selector: 'app-login',

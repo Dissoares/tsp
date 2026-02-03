@@ -68,15 +68,7 @@ export class CabecalhoComponent implements OnInit, OnDestroy {
   }
 
   public abrirPerfil(): void {
-    if (this.authService.isAdmin()) {
-      this.router.navigate(['/administracao/perfil']);
-    } else if (this.authService.isSecretaria()) {
-      this.router.navigate(['/secretaria/perfil']);
-    } else if (this.authService.isSecretariaExecutiva()) {
-      this.router.navigate(['/secretaria-executiva/perfil']);
-    } else {
-      this.router.navigate(['/auth']);
-    }
+    this.router.navigate(['/perfil']);
   }
 
   public abrirConfiguracoes(): void {}
