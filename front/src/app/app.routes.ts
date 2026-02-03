@@ -11,13 +11,6 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./layout/conteudo/conteudo.component').then((c) => c.ConteudoComponent),
-    children: [
-      {
-        path: '**',
-        redirectTo: '/auth',
-        pathMatch: 'full',
-      },
-    ],
   },
 
   {

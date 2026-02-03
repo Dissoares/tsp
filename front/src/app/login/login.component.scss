@@ -7,6 +7,13 @@ mat-form-field {
   height: 100vh;
   overflow: hidden;
 
+  .auth-image {
+    flex: 1;
+    background-color: #c3e1e2;
+    background-size: cover;
+    background-position: center;
+  }
+
   .auth-form {
     flex: 1;
     display: flex;
@@ -20,13 +27,6 @@ mat-form-field {
       max-width: 400px;
     }
   }
-
-  .auth-image {
-    flex: 1;
-    background-image: url("https://blog.me.com.br/wp-content/uploads/2019/01/LEO-e1590513003825.jpg");
-    background-size: cover;
-    background-position: center;
-  }
 }
 
 @media (max-width: 768px) {
@@ -34,8 +34,7 @@ mat-form-field {
     flex-direction: column;
 
     .auth-image {
-      display: none; 
+      display: none;
     }
   }
 }
-
