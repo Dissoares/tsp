@@ -21,6 +21,13 @@
   display: flex;
   align-items: center;
 
+  .logo-sesa {
+    height: 40px;
+    width: auto;
+    margin-right: 12px;
+    object-fit: contain;
+  }
+
   .logo-icon {
     color: #4caf50;
     font-size: 30px;
@@ -131,6 +138,17 @@
   .cabecalho {
     padding: 0 16px;
     height: 60px;
+  }
+
+  .logo-container {
+    .logo-governo {
+      height: 30px;
+      margin-right: 8px;
+    }
+
+    .titulo {
+      font-size: 18px;
+    }
   }
 
   .botao-usuario {

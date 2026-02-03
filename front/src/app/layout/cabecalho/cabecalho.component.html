@@ -1,14 +1,11 @@
 <mat-toolbar class="cabecalho">
-
-
   <div class="logo-container">
-    <mat-icon class="logo-icon">health_and_safety</mat-icon>
-    <span class="titulo">Gepes</span>
+    <img src="images/sesa.svg" alt="Governo do Ceará" class="logo-sesa" />
   </div>
 
   <span class="spaco-menu"></span>
 
-  @if(tempoRestante){
+  @if (tempoRestante) {
   <div class="contador-acesso" [class.warning]="isWarning()">
     <span class="contador-tempo">
       <mat-icon class="contador-icon">access_time</mat-icon>
