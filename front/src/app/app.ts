@@ -1,12 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { LoadingService } from './core/services';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('gepes');
+  private loadingService = inject(LoadingService);
+  private cdr = inject(ChangeDetectorRef);
+
+  public carregando$ = this.loadingService.carregando$;
+
+  public ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
 }
