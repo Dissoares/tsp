@@ -17,8 +17,8 @@ export const routes: Routes = [
     path: 'perfil',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./modules/usuario/gerenciar-perfil/gerenciar-perfil.component').then(
-        (m) => m.GerenciarPerfilComponent,
+      import('./modules/usuario/perfil/perfil.component').then(
+        (m) => m.PerfilComponent,
       ),
   },
 
