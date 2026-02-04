@@ -40,7 +40,7 @@
           <ng-template matStepLabel>Identificação</ng-template>
 
           <div class="field-6 campo-container">
-            <label id="titulo-campo">Título do projeto *</label>
+            <label id="titulo-campo">Título do projeto*</label>
             <input matInput formControlName="tituloProjeto" placeholder="Informe o título do projeto" />
             <mat-error>
               <app-erro [dadosCampo]="formulario.get('tituloProjeto')"> </app-erro>
@@ -48,7 +48,7 @@
           </div>
 
           <div class="field-6 campo-container">
-            <label id="titulo-campo">Descrição do projeto *</label>
+            <label id="titulo-campo">Descrição do projeto*</label>
             <input matInput formControlName="descricaoProjeto" placeholder="Descrição do projeto" />
             <mat-error>
               <app-erro [dadosCampo]="formulario.get('descricaoProjeto')"> </app-erro>
@@ -56,7 +56,7 @@
           </div>
 
           <div class="field-6 campo-container">
-            <label id="titulo-campo">Responsável área solicitante *</label>
+            <label id="titulo-campo">Responsável área solicitante*</label>
             <input matInput formControlName="responsavelProjeto" placeholder="Nome completo" />
             <mat-error>
               <app-erro [dadosCampo]="formulario.get('responsavelProjeto')"> </app-erro>
@@ -64,7 +64,7 @@
           </div>
 
           <div class="field-6 campo-container">
-            <label id="titulo-campo">Motivação *</label>
+            <label id="titulo-campo">Motivação*</label>
             <input matInput formControlName="motivacaoProjeto" placeholder="Informe a motivação do projeto" />
             <mat-error>
               <app-erro [dadosCampo]="formulario.get('motivacaoProjeto')"> </app-erro>
@@ -73,6 +73,7 @@
         </form>
 
         <mat-card-footer>
+          <button mat-button></button>
           <button class="salvar" mat-button (click)="avancar(stepper)">
             <mat-icon>arrow_forward</mat-icon>Avançar
           </button>
@@ -88,7 +89,12 @@
           <ng-template matStepLabel>Objetivos</ng-template>
 
           <div class="field-12 campo-container">
-            <label id="titulo-campo">Objetivos específicos do projeto *</label>
+            <label id="titulo-campo">Objetivos específicos do projeto*<mat-icon
+                matTooltip="Descreva os objetivos do projeto." matTooltipPosition="right" class="icone-informacao">
+                help
+              </mat-icon>
+            </label>
+
             <textarea matInput formControlName="objetivosEspecificosProjeto" maxlength="1200" rows="6"></textarea>
             <mat-error>
               <app-erro [dadosCampo]="formulario.get('objetivosEspecificosProjeto')"> </app-erro>
@@ -98,14 +104,20 @@
 
         <mat-card-content>
           <mat-card-header>
-            <h2>Objetivos estratégicos da Sesa</h2>
+            <h2>
+              Objetivos estratégicos da Sesa
+              <mat-icon matTooltip="Selecione quais objetivos estratégicos se encaixam no seu projeto "
+                matTooltipPosition="right" class="icone-informacao">
+                help
+              </mat-icon>
+            </h2>
+
             <span class="spaco-menu"></span>
             <button class="salvar" mat-button matStepperNext>
               <mat-icon>add</mat-icon>Adicionar
             </button>
           </mat-card-header>
-
-          <app-nada-encontrado></app-nada-encontrado>
+          <app-nada-encontrado mensagem="Nenhum objetivo adicionado." icone="info"></app-nada-encontrado>
         </mat-card-content>
 
         <mat-card-footer>
@@ -189,7 +201,7 @@
         <form [formGroup]="formulario" class="container">
           <ng-template matStepLabel>Aceitação do Secretário</ng-template>
 
-          <div class="field-12 campo-container">
+          <div class="field-12 campo-container" style="width: 98% !important">
             <label id="titulo-campo">Aprovação*</label>
 
             <mat-select formControlName="aprovacao" placeholder="Selecione">
@@ -219,12 +231,27 @@
   <mat-step [stepControl]="formulario">
     <mat-card>
       <mat-card-content>
+        <div class="secao-informcativa">
+          <div class="icone">
+            <mat-icon>check_circle_outline</mat-icon>
+          </div>
+
+          <div class="textos">
+            <h3>Viabilidade</h3>
+            <small>Avalie o status do projeto</small>
+          </div>
+        </div>
+
         <form [formGroup]="formulario" class="container">
           <ng-template matStepLabel>Análise de viabilidade</ng-template>
-
           <div class="field-4 campo-container">
             <label id="titulo-campo">Este projeto é viavél?*</label>
-            <input matInput formControlName="projetoViavel" placeholder="Selecione" />
+
+            <mat-select formControlName="projetoViavel" placeholder="Selecione" style="width: 96% !important">
+              <mat-option *ngFor="let resposta of respostaEnum" [value]="resposta.id">
+                {{ resposta.descricao }}
+              </mat-option>
+            </mat-select>
             <mat-error>
               <app-erro [dadosCampo]="formulario.get('projetoViavel')"> </app-erro>
             </mat-error>

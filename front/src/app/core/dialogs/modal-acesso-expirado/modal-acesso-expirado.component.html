@@ -57,12 +57,13 @@
   </mat-card-content>
 
   <mat-card-actions class="acoes-login">
-    <button type="submit" mat-flat-button class="btn-primary" (click)="login()" [disabled]="formulario.invalid">
+    <button class="salvar" type="submit" mat-flat-button class="btn-primary" (click)="login()"
+      [disabled]="formulario.invalid">
       <mat-icon>login</mat-icon>
       Acessar
     </button>
 
-    <button type="button" mat-stroked-button class="btn-secondary" (click)="cancelar()">
+    <button class="cancelar" type="button" mat-stroked-button class="btn-secondary" (click)="cancelar()">
       <mat-icon>arrow_back</mat-icon>
       Voltar
     </button>

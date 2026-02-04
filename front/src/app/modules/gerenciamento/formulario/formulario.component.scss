@@ -45,13 +45,12 @@ h2 {
   text-transform: uppercase;
 }
 
-::ng-deep app-erro{
+::ng-deep app-erro {
   padding-left: 5px !important;
   font-size: 12px !important;
   margin-top: 0px !important;
   color: rgb(109, 0, 0) !important;
 }
-
 
 .campo-container {
   display: flex;
@@ -77,7 +76,6 @@ h2 {
 
 ::ng-deep .mat-mdc-select,
 div.mat-mdc-select-panel {
-  width: 98% !important;
   border-bottom: 1px solid #1f6f63;
   font-size: 15px;
   outline: none;
@@ -89,10 +87,6 @@ div.mat-mdc-select-panel {
 .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
   background-color: #0f5b50 !important;
   color: #fff !important;
-}
-
-::ng-deep #mat-select-18-panel {
-  width: 95% !important;
 }
 
 .campo-container input:focus,
@@ -257,4 +251,48 @@ div.mat-mdc-select-panel {
   mat-card-content {
     padding: 8px !important;
   }
+}
+
+.icone-informacao {
+  margin-top: 6px;
+  font-size: 16px;
+  margin-left: 6px;
+  cursor: pointer;
+  vertical-align: middle;
+  color: #1f6f63;
+}
+
+.secao-informcativa {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+}
+
+.secao-informcativa .icone {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f5b50;
+  background-color: #75cb84;
+}
+
+.secao-informcativa mat-icon {
+  font-size: 22px;
+}
+
+.secao-informcativa .textos h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f5b50;
+}
+
+.secao-informcativa .textos small {
+  display: block;
+  font-size: 13px;
+  color: #4f7f78;
 }

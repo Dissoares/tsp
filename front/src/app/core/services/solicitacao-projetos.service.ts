@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class SolicitacaoProjetosService {
   private readonly apiUrl: string = environment.apiUrl;
-  private readonly endPointUrl: string = '/usuario';
+  private readonly endPointUrl: string = '/solicitacao';
 
   constructor(private http: HttpClient) {}
 

@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { SolicitacaoProjetosService } from '../../../core/services';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { campoObrigatorio } from '../../../core/validators';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { SolicitacaoProjeto } from '../../../core/models';
@@ -28,6 +28,7 @@ import { ToastrService } from 'ngx-toastr';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatStepperModule,
+    MatTooltipModule,
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
@@ -69,6 +70,16 @@ export class FormularioComponent implements OnInit {
     });
   }
 
+  public verificarCamposValidos(): boolean {
+    if (this.formulario.invalid) {
+      this.formulario.markAllAsTouched();
+      this.toastr.error('Preencha os campos obrigatórios.', 'Erro');
+      return false;
+    }
+
+    return true;
+  }
+
   public avancar(stepper: MatStepper): void {
     stepper.next();
   }
@@ -80,12 +91,18 @@ export class FormularioComponent implements OnInit {
   public enviar(): void {
     const solicitacao: SolicitacaoProjeto = this.formulario.getRawValue();
 
-    this.solicitacaoService.salvar(solicitacao).subscribe((salva: SolicitacaoProjeto) => {
-      if (salva && salva.id) {
-        this.toastr.success('Solicitação salva com sucesso!.', 'Sucesso!');
-        return;
-      }
-      this.toastr.error('Não foi possível salvar a solicitação.', 'Erro!');
-    });
+    if (this.verificarCamposValidos()) {
+      this.solicitacaoService.salvar(solicitacao).subscribe({
+        next: (salva: SolicitacaoProjeto) => {
+          salva && salva
+            ? this.toastr.success('Solicitação salva com sucesso!.', 'Sucesso!')
+            : null;
+        },
+        error: (erro) => {
+          this.toastr.error('Não foi possível salvar a solicitação.', 'Erro!');
+          console.log(erro);
+        },
+      });
+    }
   }
 }
