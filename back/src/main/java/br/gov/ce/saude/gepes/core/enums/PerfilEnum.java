@@ -13,7 +13,9 @@ public enum PerfilEnum {
 
     ADMINISTRADOR(1, "ADMINISTRADOR"),
     SECRETARIA(2, "SECRETARIA"),
-    SECRETARIA_EXECUTIVA(3, "SECRETARIA_EXECUTIVA");
+    SECRETARIA_EXECUTIVA(3, "SECRETARIA_EXECUTIVA"),
+    CORDENADOR(4, "CORDENADOR"),
+    USUARIO(5, "USUARIO");
 
     private final Integer codigo;
     private final String descricao;
