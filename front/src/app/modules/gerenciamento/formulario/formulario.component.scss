@@ -6,10 +6,25 @@ mat-stepper {
 mat-card-content {
   background-color: #f4f4f4 !important;
   padding: 20px !important;
+  border-radius: 12px;
 }
 
 mat-card-footer {
   margin-top: 30px;
+}
+
+mat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spaco-menu {
+  flex: 1;
+}
+
+h2 {
+  color: #0f5b50;
 }
 
 .campo-container {
@@ -54,7 +69,8 @@ div.mat-mdc-select-panel {
   width: 95% !important;
 }
 
-.campo-container input:focus {
+.campo-container input:focus,
+.campo-container textarea:focus {
   border-bottom: 3px solid #1f6f63;
 }
 

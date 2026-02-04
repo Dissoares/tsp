@@ -75,10 +75,20 @@
 
           <div class="field-12 campo-container">
             <label id="titulo-campo">Objetivos específicos do projeto *</label>
-            <input matInput formControlName="objetivosEspecificosProjeto"
-              placeholder="Descreva os objetivos do projeto" />
+            <textarea matInput formControlName="objetivosEspecificosProjeto" maxlength="1200" rows="8"></textarea>
           </div>
         </form>
+
+        <mat-card-content>
+          <mat-card-header>
+            <h2>Objetivos estratégicos da Sesa</h2>
+              <span class="spaco-menu"></span>
+            <button class="salvar" mat-button matStepperNext>Adicionar</button>
+          </mat-card-header>
+
+
+          <app-nada-encontrado></app-nada-encontrado>
+        </mat-card-content>
 
         <mat-card-footer>
           <button class="cancelar" mat-button matStepperPrevious>Voltar</button>

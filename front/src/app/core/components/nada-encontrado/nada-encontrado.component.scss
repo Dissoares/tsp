@@ -1,11 +1,14 @@
 .nada-encontrado-card {
   width: 100%;
-  background-color: rgba(124, 0, 0, 0.123) !important;
+  background-color: #e8e8e8 !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  color: rgba(0, 0, 0, 0.6);
+  height: 130px;
+  font-weight: 600;
+  color: #0f5b50;
+  box-shadow: none !important;
+  border: solid 1px #c4c4c4;
 
   .conteudo {
     display: flex;

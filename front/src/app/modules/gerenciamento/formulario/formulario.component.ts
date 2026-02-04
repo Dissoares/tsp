@@ -1,4 +1,5 @@
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NadaEncontradoComponent } from '../../../core/components/index.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.scss'],
   imports: [
+    NadaEncontradoComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatStepperModule,
