@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RespostaEnum } from '../../../core/enums';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-formulario',
   standalone: true,
@@ -44,6 +45,7 @@ export class FormularioComponent implements OnInit {
   public respostaEnum = RespostaEnum.getAll();
 
   private readonly solicitacaoService = inject(SolicitacaoProjetosService);
+  private readonly router = inject(Router);
   private readonly toastr = inject(ToastrService);
 
   constructor(public fb: FormBuilder) {}
@@ -70,16 +72,6 @@ export class FormularioComponent implements OnInit {
     });
   }
 
-  public verificarCamposValidos(): boolean {
-    if (this.formulario.invalid) {
-      this.formulario.markAllAsTouched();
-      this.toastr.error('Preencha os campos obrigatórios.', 'Erro');
-      return false;
-    }
-
-    return true;
-  }
-
   public avancar(stepper: MatStepper): void {
     stepper.next();
   }
@@ -88,10 +80,14 @@ export class FormularioComponent implements OnInit {
     stepper.previous();
   }
 
+  public cancelar() {
+    this.router.navigate(['']);
+  }
+
   public enviar(): void {
     const solicitacao: SolicitacaoProjeto = this.formulario.getRawValue();
 
-    if (this.verificarCamposValidos()) {
+    if (this.verificarCamposValidos(solicitacao)) {
       this.solicitacaoService.salvar(solicitacao).subscribe({
         next: (salva: SolicitacaoProjeto) => {
           salva && salva
@@ -104,5 +100,29 @@ export class FormularioComponent implements OnInit {
         },
       });
     }
+  }
+
+  public verificarCamposValidos(solicitacao: SolicitacaoProjeto): boolean {
+    if (
+      !solicitacao.tituloProjeto ||
+      !solicitacao.descricaoProjeto ||
+      !solicitacao.responsavelProjeto ||
+      !solicitacao.motivacaoProjeto ||
+      !solicitacao.objetivosEspecificosProjeto ||
+      !solicitacao.objetivosEstrategicosSesa ||
+      !solicitacao.premissas ||
+      !solicitacao.riscos ||
+      !solicitacao.restricoes ||
+      !solicitacao.aprovacao ||
+      !solicitacao.projetoViavel ||
+      !solicitacao.estimativaTempo ||
+      !solicitacao.estimativaCusto
+    ) {
+      this.formulario.markAllAsTouched();
+      this.toastr.error('Preencha os campos obrigatórios.', 'Erro');
+      return false;
+    }
+
+    return true;
   }
 }

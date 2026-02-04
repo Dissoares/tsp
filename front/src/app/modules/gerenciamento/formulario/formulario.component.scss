@@ -20,6 +20,14 @@ mat-card-footer {
   justify-content: space-between;
 }
 
+.barra-enviar {
+  border: solid 1px #afafaf !important;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 textarea {
   margin: 10px !important;
   border: none !important;

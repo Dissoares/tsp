@@ -273,16 +273,22 @@
             </mat-error>
           </div>
         </form>
-
-        <mat-card-footer>
-          <button class="cancelar" mat-button (click)="voltar(stepper)">
-            <mat-icon>arrow_back</mat-icon>Voltar
-          </button>
-          <button class="salvar" mat-button (click)="enviar()">
-            <mat-icon>send</mat-icon>Enviar
-          </button>
-        </mat-card-footer>
       </mat-card-content>
     </mat-card>
+
+    <div class="barra-enviar">
+      <label id="titulo-campo">Preencha todas as informações necessárias</label>
+      <div>
+        <button class="cancelar" mat-button (click)="voltar(stepper)">
+          <mat-icon>arrow_back</mat-icon>Voltar
+        </button>
+        <button class="cancelar" mat-button (click)="cancelar()">
+          <mat-icon>arrow_back</mat-icon>Cancelar
+        </button>
+        <button class="salvar" mat-button (click)="enviar()">
+          <mat-icon>send</mat-icon>Enviar
+        </button>
+      </div>
+    </div>
   </mat-step>
 </mat-stepper>
