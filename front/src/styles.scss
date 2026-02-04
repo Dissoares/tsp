@@ -1,19 +1,38 @@
 @use '@angular/material' as mat;
 
 html {
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
+  @include mat.theme((color: (primary: mat.$azure-palette,
         tertiary: mat.$blue-palette,
       ),
       typography: 'Poppins, sans-serif',
       density: 0,
-    )
-  );
+    ));
 }
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
+}
+
+mat-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 20px;
+}
+
+.salvar,
+.cancelar {
+  width: 120px;
+}
+
+.salvar {
+  background-color: #0e534e !important;
+  color: #fff !important;
+}
+
+.cancelar {
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: #0e534e !important;
+  border: solid 1px #0e534e !important;
 }

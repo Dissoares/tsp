@@ -1,7 +1,7 @@
 <app-cabecalho> </app-cabecalho>
 <mat-toolbar class="breadcrumbs">
   <mat-card-header>
-    <mat-card-title><mat-icon>account_circle</mat-icon>Perfil</mat-card-title>
+    <mat-card-title><mat-icon>account_circle</mat-icon>{{ ehEdicao ? 'Alterar senha' : 'Perfil' }}</mat-card-title>
   </mat-card-header>
 </mat-toolbar>
 
@@ -63,6 +63,19 @@
             <app-erro [dadosCampo]="formulario.get('confirmarSenha')"></app-erro>
           </mat-error>
         </mat-form-field>
+        }
+
+        @if (ehEdicao) {
+        <mat-card-footer>
+          <button class="salvar" type="submit" mat-flat-button (click)="alterarSenha()">
+            Salvar
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+          <button class="cancelar" type="submit" mat-flat-button (click)="cancelar()">
+            Cancelar
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </mat-card-footer>
         }
       </form>
     </mat-card-content>

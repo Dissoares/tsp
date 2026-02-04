@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Usuario } from '../models';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -17,6 +16,11 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
 
   public salvar(usuario: Usuario): Observable<HttpResponse<string>> {
+    if (usuario && usuario.id) {
+      return this.http.put<string>(this.apiUrl + this.endPointUrl, usuario, {
+        observe: 'response',
+      });
+    }
     return this.http.post<string>(this.apiUrl + this.endPointUrl, usuario, {
       observe: 'response',
     });
@@ -36,10 +40,7 @@ export class UsuarioService {
 
   public filtrarPor(filtro: Usuario): Observable<Array<Usuario>> {
     const params = new HttpParams({ fromObject: this.camposFiltrados(filtro) });
-    return this.http.get<Array<Usuario>>(
-      `${this.apiUrl}${this.endPointUrl}/filtrar`,
-      { params }
-    );
+    return this.http.get<Array<Usuario>>(`${this.apiUrl}${this.endPointUrl}/filtrar`, { params });
   }
 
   private camposFiltrados(filtros: any): { [param: string]: string } {
@@ -58,10 +59,7 @@ export class UsuarioService {
       params = params.set('nome', nome);
     }
 
-    return this.http.get<Array<Usuario>>(
-      `${this.apiUrl}${this.endPointUrl}/por-nome`,
-      { params }
-    );
+    return this.http.get<Array<Usuario>>(`${this.apiUrl}${this.endPointUrl}/por-nome`, { params });
   }
 
   public ativaDesativar(usuario: Usuario): Observable<Usuario> {

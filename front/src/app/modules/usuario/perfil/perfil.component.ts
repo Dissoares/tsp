@@ -3,6 +3,7 @@ import {
   ErrosFormularioComponent,
 } from '../../../core/components/index.component';
 import { CabecalhoComponent } from '../../../layout/cabecalho/cabecalho.component';
+import { AuthService, UsuarioService } from '../../../core/services';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -10,13 +11,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioToken } from '../../../core/interfaces';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../../core/services';
-import { ActivatedRoute } from '@angular/router';
 import { PerfilEnum } from '../../../core/enums';
 import { CommonModule } from '@angular/common';
+import { Usuario } from '../../../core/models';
+import { ToastrService } from 'ngx-toastr';
 import { DateTime } from 'luxon';
 
 @Component({
@@ -45,6 +48,10 @@ export class PerfilComponent extends CamposFormularioComponent implements OnInit
   public mostrarSenha: boolean = false;
   public ehCadastro: boolean = false;
 
+  private readonly usuarioService = inject(UsuarioService);
+  private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
@@ -70,6 +77,7 @@ export class PerfilComponent extends CamposFormularioComponent implements OnInit
 
   private criarFormulario(): void {
     this.formulario = this.fb.group({
+      id: [null],
       nome: [null],
       email: [null],
       perfil: [null],
@@ -101,5 +109,30 @@ export class PerfilComponent extends CamposFormularioComponent implements OnInit
     this.preencherFormulario();
     this.habilitarFormulario();
     this.ehEdicao = true;
+  }
+
+  public alterarSenha(): void {
+    const usuario = this.formulario.getRawValue();
+    usuario.dataCriacao = null;
+
+    this.usuarioService.salvar(usuario).subscribe({
+      next: () => {
+        this.toastr.success('Senha alterada com sucesso!', 'Sucesso!');
+        this.ehCadastro = false;
+        this.limparFormulario();
+        this.marcarFormularioComoNAOTocado();
+      },
+      error: (resposta: HttpErrorResponse) => {
+        const msg =
+          resposta.error?.mensagem ||
+          resposta.error?.message ||
+          'Erro inesperado. Tente novamente.';
+        this.toastr.error(msg, 'Erro!');
+      },
+    });
+  }
+
+  public cancelar(): void {
+    this.router.navigate(['']);
   }
 }
