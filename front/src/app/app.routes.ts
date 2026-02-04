@@ -12,14 +12,20 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./layout/conteudo/conteudo.component').then((c) => c.ConteudoComponent),
+    children: [
+      {
+        path: 'gerenciamento',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./modules/gerenciamento/gerenciamento.routing').then((m) => m.GERENCIAMENTO),
+      },
+    ],
   },
   {
     path: 'perfil',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./modules/usuario/perfil/perfil.component').then(
-        (m) => m.PerfilComponent,
-      ),
+      import('./modules/usuario/perfil/perfil.component').then((m) => m.PerfilComponent),
   },
 
   {
