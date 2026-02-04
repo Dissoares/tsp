@@ -1,3 +1,98 @@
-<p>
-  formulario works!
-</p>
+<div class="container-stepper">
+  <div class="stepper">
+    <div class="step" [class.active]="stepper.selectedIndex === 0" [class.done]="stepper.selectedIndex > 0">
+      <span class="circulo">1</span>
+      <small>Identificação</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 1" [class.done]="stepper.selectedIndex > 1">
+      <span class="circulo">2</span>
+      <small>Objetivos</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 2" [class.done]="stepper.selectedIndex > 2">
+      <span class="circulo">3</span>
+      <small>Premissas</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 3" [class.done]="stepper.selectedIndex > 3">
+      <span class="circulo">4</span>
+      <small>Riscos e Restrições</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 4" [class.done]="stepper.selectedIndex > 4">
+      <span class="circulo">5</span>
+      <small>Aceitação do Secretário</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 5" [class.done]="stepper.selectedIndex > 5">
+      <span class="circulo">6</span>
+      <small>Análise de viabilidade</small>
+    </div>
+  </div>
+</div>
+
+<mat-stepper linear #stepper class="custom-stepper">
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Identificação</ng-template>
+
+          <div class="field-6 campo-container">
+            <label id="titulo-campo">Título do projeto *</label>
+            <input matInput formControlName="tituloProjeto" placeholder="Informe o título do projeto" />
+          </div>
+
+          <div class="field-6 campo-container">
+            <label id="titulo-campo">Descrição do projeto *</label>
+            <input matInput formControlName="descricaoProjeto" placeholder="Descrição do projeto" />
+          </div>
+
+          <div class="field-6 campo-container">
+            <label id="titulo-campo">Responsável área solicitante *</label>
+            <input matInput formControlName="descricaoProjeto" placeholder="Nome completo" />
+          </div>
+
+          <div class="field-6 campo-container">
+            <label id="titulo-campo">Motivação *</label>
+            <input matInput formControlName="descricaoProjeto" placeholder="Informe a motivação do projeto" />
+          </div>
+        </form>
+        <mat-card-footer>
+          <button class="salvar" matButton matStepperNext>Avançar</button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+  </mat-step>
+
+  <mat-step [stepControl]="formulario">
+    <ng-template matStepLabel>Objetivos</ng-template>
+    <button mat-button matStepperPrevious>Voltar</button>
+    <button mat-button matStepperNext>Avançar</button>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Premissas</ng-template>
+    <button mat-button matStepperPrevious>Voltar</button>
+    <button mat-button matStepperNext>Avançar</button>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Riscos e Restrições</ng-template>
+    <button mat-button matStepperPrevious>Voltar</button>
+    <button mat-button matStepperNext>Avançar</button>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Aceitação do Secretário</ng-template>
+    <button mat-button matStepperPrevious>Voltar</button>
+    <button mat-button matStepperNext>Avançar</button>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Análise de viabilidade</ng-template>
+    <button mat-button matStepperPrevious>Voltar</button>
+    <button mat-button>Salvar</button>
+  </mat-step>
+</mat-stepper>
