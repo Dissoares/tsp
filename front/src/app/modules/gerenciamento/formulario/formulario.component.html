@@ -42,26 +42,40 @@
           <div class="field-6 campo-container">
             <label id="titulo-campo">Título do projeto *</label>
             <input matInput formControlName="tituloProjeto" placeholder="Informe o título do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('tituloProjeto')"> </app-erro>
+            </mat-error>
           </div>
 
           <div class="field-6 campo-container">
             <label id="titulo-campo">Descrição do projeto *</label>
             <input matInput formControlName="descricaoProjeto" placeholder="Descrição do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('descricaoProjeto')"> </app-erro>
+            </mat-error>
           </div>
 
           <div class="field-6 campo-container">
             <label id="titulo-campo">Responsável área solicitante *</label>
             <input matInput formControlName="responsavelProjeto" placeholder="Nome completo" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('responsavelProjeto')"> </app-erro>
+            </mat-error>
           </div>
 
           <div class="field-6 campo-container">
             <label id="titulo-campo">Motivação *</label>
             <input matInput formControlName="motivacaoProjeto" placeholder="Informe a motivação do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('motivacaoProjeto')"> </app-erro>
+            </mat-error>
           </div>
         </form>
 
         <mat-card-footer>
-          <button class="salvar" matButton matStepperNext>Avançar</button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
         </mat-card-footer>
       </mat-card-content>
     </mat-card>
@@ -75,24 +89,32 @@
 
           <div class="field-12 campo-container">
             <label id="titulo-campo">Objetivos específicos do projeto *</label>
-            <textarea matInput formControlName="objetivosEspecificosProjeto" maxlength="1200" rows="8"></textarea>
+            <textarea matInput formControlName="objetivosEspecificosProjeto" maxlength="1200" rows="6"></textarea>
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('objetivosEspecificosProjeto')"> </app-erro>
+            </mat-error>
           </div>
         </form>
 
         <mat-card-content>
           <mat-card-header>
             <h2>Objetivos estratégicos da Sesa</h2>
-              <span class="spaco-menu"></span>
-            <button class="salvar" mat-button matStepperNext>Adicionar</button>
+            <span class="spaco-menu"></span>
+            <button class="salvar" mat-button matStepperNext>
+              <mat-icon>add</mat-icon>Adicionar
+            </button>
           </mat-card-header>
-
 
           <app-nada-encontrado></app-nada-encontrado>
         </mat-card-content>
 
         <mat-card-footer>
-          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
-          <button class="salvar" mat-button matStepperNext>Avançar</button>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
         </mat-card-footer>
       </mat-card-content>
     </mat-card>
@@ -106,13 +128,20 @@
 
           <div class="field-12 campo-container">
             <label id="titulo-campo">Premissas*</label>
-            <input matInput formControlName="premissas" placeholder="Informe as premissas" />
+            <textarea matInput formControlName="premissas" maxlength="1200" rows="6"></textarea>
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('premissas')"> </app-erro>
+            </mat-error>
           </div>
         </form>
 
         <mat-card-footer>
-          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
-          <button class="salvar" mat-button matStepperNext>Avançar</button>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
         </mat-card-footer>
       </mat-card-content>
     </mat-card>
@@ -127,17 +156,28 @@
           <div class="field-12 campo-container">
             <label id="titulo-campo">Riscos*</label>
             <input matInput formControlName="riscos" placeholder="Informe os riscos" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('riscos')"> </app-erro>
+            </mat-error>
           </div>
 
           <div class="field-12 campo-container">
             <label id="titulo-campo">Restrições*</label>
             <input matInput formControlName="restricoes" placeholder="Informe as restrições" />
+
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('restricoes')"> </app-erro>
+            </mat-error>
           </div>
         </form>
 
         <mat-card-footer>
-          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
-          <button class="salvar" mat-button matStepperNext>Avançar</button>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
         </mat-card-footer>
       </mat-card-content>
     </mat-card>
@@ -157,12 +197,20 @@
                 {{ resposta.descricao }}
               </mat-option>
             </mat-select>
+
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('aprovacao')"> </app-erro>
+            </mat-error>
           </div>
         </form>
 
         <mat-card-footer>
-          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
-          <button class="salvar" mat-button matStepperNext>Avançar</button>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
         </mat-card-footer>
       </mat-card-content>
     </mat-card>
@@ -177,22 +225,35 @@
           <div class="field-4 campo-container">
             <label id="titulo-campo">Este projeto é viavél?*</label>
             <input matInput formControlName="projetoViavel" placeholder="Selecione" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('projetoViavel')"> </app-erro>
+            </mat-error>
           </div>
 
           <div class="field-4 campo-container">
             <label id="titulo-campo">Estimativa de tempo*</label>
             <input matInput formControlName="estimativaTempo" placeholder="Informe as estimativa de tempo do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('estimativaTempo')"> </app-erro>
+            </mat-error>
           </div>
 
           <div class="field-4 campo-container">
             <label id="titulo-campo">Estimativa de custo*</label>
             <input matInput formControlName="estimativaCusto" placeholder="Informe as estimativa de custo do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('estimativaCusto')"> </app-erro>
+            </mat-error>
           </div>
         </form>
 
         <mat-card-footer>
-          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
-          <button class="salvar" mat-button>Enviar</button>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="enviar()">
+            <mat-icon>send</mat-icon>Enviar
+          </button>
         </mat-card-footer>
       </mat-card-content>
     </mat-card>

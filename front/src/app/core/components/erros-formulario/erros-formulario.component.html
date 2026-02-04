@@ -1,1 +1,3 @@
-{{ getMensagemDeErro(dadosCampo?.errors || campoVazio) }}
+<ng-container *ngIf="dadosCampo && dadosCampo.invalid && (dadosCampo.touched || dadosCampo.dirty)">
+    {{ getMensagemDeErro(dadosCampo.errors || campoVazio) }}
+</ng-container>
