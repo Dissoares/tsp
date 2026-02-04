@@ -2,9 +2,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { SolicitacaoProjeto } from '../../../core/models';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { RespostaEnum } from '../../../core/enums';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -13,19 +16,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.scss'],
   imports: [
-    CommonModule,
-    MatButtonModule,
-    MatStepperModule,
-    FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatSelectModule,
     MatInputModule,
     MatCardModule,
     MatIconModule,
+    CommonModule,
+    FormsModule,
   ],
 })
 export class FormularioComponent implements OnInit {
   public formulario!: FormGroup;
+
+  public respostaEnum = RespostaEnum.getAll();
 
   constructor(public fb: FormBuilder) {}
 
@@ -49,5 +55,9 @@ export class FormularioComponent implements OnInit {
       estimativaTempo: [null],
       estimativaCusto: [null],
     });
+  }
+
+  public enviar(): void {
+    const dados: SolicitacaoProjeto = this.formulario.getRawValue();
   }
 }

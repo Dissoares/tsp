@@ -8,6 +8,10 @@ mat-card-content {
   padding: 20px !important;
 }
 
+mat-card-footer {
+  margin-top: 30px;
+}
+
 .campo-container {
   display: flex;
   flex-direction: column;
@@ -30,8 +34,35 @@ mat-card-content {
   height: 25px !important;
 }
 
+::ng-deep .mat-mdc-select,
+div.mat-mdc-select-panel {
+  width: 98% !important;
+  border-bottom: 1px solid #1f6f63;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+  padding: 15px;
+}
+
+::ng-deep .mat-mdc-option:focus.mdc-list-item,
+.mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+  background-color: #0f5b50 !important;
+  color: #fff !important;
+}
+
+::ng-deep #mat-select-18-panel {
+  width: 95% !important;
+}
+
 .campo-container input:focus {
   border-bottom: 3px solid #1f6f63;
+}
+
+.campo-container input::placeholder {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: #9e9e9e;
+  opacity: 1;
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container {

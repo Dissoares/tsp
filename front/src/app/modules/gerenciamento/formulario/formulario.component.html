@@ -51,14 +51,15 @@
 
           <div class="field-6 campo-container">
             <label id="titulo-campo">Responsável área solicitante *</label>
-            <input matInput formControlName="descricaoProjeto" placeholder="Nome completo" />
+            <input matInput formControlName="responsavelProjeto" placeholder="Nome completo" />
           </div>
 
           <div class="field-6 campo-container">
             <label id="titulo-campo">Motivação *</label>
-            <input matInput formControlName="descricaoProjeto" placeholder="Informe a motivação do projeto" />
+            <input matInput formControlName="motivacaoProjeto" placeholder="Informe a motivação do projeto" />
           </div>
         </form>
+
         <mat-card-footer>
           <button class="salvar" matButton matStepperNext>Avançar</button>
         </mat-card-footer>
@@ -67,32 +68,123 @@
   </mat-step>
 
   <mat-step [stepControl]="formulario">
-    <ng-template matStepLabel>Objetivos</ng-template>
-    <button mat-button matStepperPrevious>Voltar</button>
-    <button mat-button matStepperNext>Avançar</button>
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Objetivos</ng-template>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Objetivos específicos do projeto *</label>
+            <input matInput formControlName="objetivosEspecificosProjeto"
+              placeholder="Descreva os objetivos do projeto" />
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
+          <button class="salvar" mat-button matStepperNext>Avançar</button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
   </mat-step>
 
-  <mat-step>
-    <ng-template matStepLabel>Premissas</ng-template>
-    <button mat-button matStepperPrevious>Voltar</button>
-    <button mat-button matStepperNext>Avançar</button>
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Premissas</ng-template>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Premissas*</label>
+            <input matInput formControlName="premissas" placeholder="Informe as premissas" />
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
+          <button class="salvar" mat-button matStepperNext>Avançar</button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
   </mat-step>
 
-  <mat-step>
-    <ng-template matStepLabel>Riscos e Restrições</ng-template>
-    <button mat-button matStepperPrevious>Voltar</button>
-    <button mat-button matStepperNext>Avançar</button>
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Riscos e Restrições</ng-template>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Riscos*</label>
+            <input matInput formControlName="riscos" placeholder="Informe os riscos" />
+          </div>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Restrições*</label>
+            <input matInput formControlName="restricoes" placeholder="Informe as restrições" />
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
+          <button class="salvar" mat-button matStepperNext>Avançar</button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
   </mat-step>
 
-  <mat-step>
-    <ng-template matStepLabel>Aceitação do Secretário</ng-template>
-    <button mat-button matStepperPrevious>Voltar</button>
-    <button mat-button matStepperNext>Avançar</button>
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Aceitação do Secretário</ng-template>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Aprovação*</label>
+
+            <mat-select formControlName="aprovacao" placeholder="Selecione">
+              <mat-option *ngFor="let resposta of respostaEnum" [value]="resposta.id">
+                {{ resposta.descricao }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
+          <button class="salvar" mat-button matStepperNext>Avançar</button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
   </mat-step>
 
-  <mat-step>
-    <ng-template matStepLabel>Análise de viabilidade</ng-template>
-    <button mat-button matStepperPrevious>Voltar</button>
-    <button mat-button>Salvar</button>
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Análise de viabilidade</ng-template>
+
+          <div class="field-4 campo-container">
+            <label id="titulo-campo">Este projeto é viavél?*</label>
+            <input matInput formControlName="projetoViavel" placeholder="Selecione" />
+          </div>
+
+          <div class="field-4 campo-container">
+            <label id="titulo-campo">Estimativa de tempo*</label>
+            <input matInput formControlName="estimativaTempo" placeholder="Informe as estimativa de tempo do projeto" />
+          </div>
+
+          <div class="field-4 campo-container">
+            <label id="titulo-campo">Estimativa de custo*</label>
+            <input matInput formControlName="estimativaCusto" placeholder="Informe as estimativa de custo do projeto" />
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button matStepperPrevious>Voltar</button>
+          <button class="salvar" mat-button>Enviar</button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
   </mat-step>
 </mat-stepper>
