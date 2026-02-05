@@ -46,7 +46,7 @@
               Selecionar objetivos
             </th>
             <td mat-cell *matCellDef="let projeto">
-              <button mat-mini-fab color="primary">
+              <button mat-mini-fab color="primary" (click)="selecionarObjetivo(projeto)">
                 <mat-icon>add</mat-icon>
               </button>
             </td>
@@ -65,8 +65,10 @@
   </mat-card-content>
 
   <mat-card-actions>
+
+
     <button class="cancelar" mat-button (click)="cancelar()"><mat-icon>close</mat-icon>Cancelar</button>
-    <button class="adicionar" mat-button (click)="adicionar(colunasTabela)">
+    <button class="adicionar" mat-button (click)="adicionar()">
       <mat-icon>add</mat-icon>Adicionar
     </button>
   </mat-card-actions>

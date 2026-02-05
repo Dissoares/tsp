@@ -3,15 +3,17 @@ import {
   NadaEncontradoComponent,
 } from '../../../core/components/index.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { DialogObjetivosEstrategicosComponent } from '../../../core/dialogs';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { SolicitacaoProjetosService } from '../../../core/services';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { SolicitacaoProjeto } from '../../../core/models';
-import { Component, inject, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -30,11 +32,13 @@ import { Router } from '@angular/router';
     NadaEncontradoComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatPaginatorModule,
     MatStepperModule,
     MatTooltipModule,
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
+    MatTableModule,
     MatCardModule,
     MatIconModule,
     CommonModule,
@@ -42,9 +46,18 @@ import { Router } from '@angular/router';
   ],
 })
 export class FormularioComponent implements OnInit {
+  @ViewChild(MatPaginator) private paginator!: MatPaginator;
   public formulario!: FormGroup;
 
   public respostaEnum = RespostaEnum.getAll();
+
+  public dadosTabela = new MatTableDataSource<any>([]);
+  public colunasTabela: Array<string> = [
+    'secretariaExecutiva',
+    'coordenadoria',
+    'objetivo',
+    'acoes',
+  ];
 
   private readonly solicitacaoService = inject(SolicitacaoProjetosService);
   private readonly dadosDialog = inject(MatDialog);
@@ -55,6 +68,10 @@ export class FormularioComponent implements OnInit {
 
   public ngOnInit(): void {
     this.criarFormulario();
+  }
+
+  public ngAfterViewInit(): void {
+    this.dadosTabela.paginator = this.paginator;
   }
 
   public criarFormulario(): void {
@@ -113,7 +130,12 @@ export class FormularioComponent implements OnInit {
       backdropClass: 'fundo-modal',
     });
 
-    dialogRef.afterClosed().subscribe((resultado) => {});
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.dadosTabela.data = resultado;
+        this.dadosTabela.paginator = this.paginator;
+      }
+    });
   }
 
   public verificarCamposValidos(solicitacao: SolicitacaoProjeto): boolean {
@@ -138,5 +160,9 @@ export class FormularioComponent implements OnInit {
     }
 
     return true;
+  }
+
+  public excluir(item: any): void {
+    this.dadosTabela.data = this.dadosTabela.data.filter((s) => s.id !== item);
   }
 }

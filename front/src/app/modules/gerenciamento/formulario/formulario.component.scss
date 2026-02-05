@@ -13,6 +13,12 @@ mat-card-footer {
   margin-top: 30px;
 }
 
+mat-card-title {
+  color: #0e534e;
+  font-weight: 600;
+  font-size: 18px;
+}
+
 .barra-enviar {
   border: solid 1px #afafaf !important;
   border-radius: 12px;
@@ -218,4 +224,24 @@ div.mat-mdc-select-panel {
   display: block;
   font-size: 13px;
   color: #4f7f78;
+}
+
+.tabela {
+  background: #fff;
+  padding: 30px;
+  margin: 10px;
+}
+
+.mat-mdc-header-row {
+  background: #0e534e !important;
+  color: #ffffff !important;
+  height: 55px !important;
+  text-transform: uppercase;
+}
+
+.mat-mdc-mini-fab {
+  box-shadow: none !important;
+  background-color: #e6e6e6;
+  margin: 5px !important;
+  color: #0f5b50 !important;
 }

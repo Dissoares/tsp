@@ -28,6 +28,7 @@ import { CommonModule } from '@angular/common';
 export class DialogObjetivosEstrategicosComponent implements OnInit {
   @ViewChild(MatPaginator) private paginator!: MatPaginator;
 
+  public listaDeSelecao: Array<any> = [];
   public dadosTabela = new MatTableDataSource<any>([]);
   public colunasTabela: Array<string> = [
     'secretariaExecutiva',
@@ -39,12 +40,12 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
   public listaObjetivosEstrategico = [
     {
       secretariaExecutiva: 'SEADE',
-      coordenadoria: '',
+      coordenadoria: 'SEVIG',
       objetivo: 'Implementação da carteira de serviços das regiões de saúde',
     },
     {
       secretariaExecutiva: 'SEADE',
-      coordenadoria: '',
+      coordenadoria: 'SESA',
       objetivo: 'Incorporação dos serviços de alta complexidade nos hospitais regionais',
     },
     {
@@ -103,7 +104,7 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogObjetivosEstrategicosComponent>,
     @Inject(MAT_DIALOG_DATA) public objetivos: any,
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.buscarObjetivos();
@@ -131,8 +132,12 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
     this.dadosTabela.filter = '';
   }
 
-  public adicionar(item: any): void {
-    this.dialogRef.close(item);
+  public adicionar(): void {
+    this.dialogRef.close(this.listaDeSelecao);
+  }
+
+  public selecionarObjetivo(item: any): void {
+    this.listaDeSelecao.push(item);
   }
 
   public cancelar(): void {
