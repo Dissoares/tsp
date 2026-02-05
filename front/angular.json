@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gepes": {
+    "tsp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -62,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "gepes:build:production"
+              "buildTarget": "tsp:build:production"
             },
             "development": {
-              "buildTarget": "gepes:build:development"
+              "buildTarget": "tsp:build:development"
             }
           },
           "defaultConfiguration": "development"
