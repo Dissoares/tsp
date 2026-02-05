@@ -5,6 +5,7 @@ mat-card-actions {
   gap: 12px;
 }
 
-mat-card-content {
-  border-radius: 16px !important;
+mat-card-content,
+mat-card {
+  box-shadow: none !important;
 }

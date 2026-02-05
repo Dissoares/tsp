@@ -4,7 +4,12 @@ mat-toolbar {
   background: #f5f3f3;
 }
 
-mat-card-content {
+app-filtros {
+  border-radius: 16px !important;
+}
+
+mat-card-content,
+table {
   border-radius: 16px !important;
 }
 
@@ -13,9 +18,37 @@ mat-card-subtitle {
   color: #717182;
 }
 
+.container-gerenciar {
+  background-color: #fff !important;
+  margin: 30px;
+  border-radius: 16px;
+}
+
 .add {
   width: 180px;
   background-color: #0e534e !important;
   color: #fff !important;
   margin: 30px;
+}
+
+.mat-mdc-header-row {
+  background: #0e534e !important;
+  color: #ffffff !important;
+  height: 55px !important;
+  text-transform: uppercase;
+}
+
+.mat-mdc-row:hover {
+  background: #ffffff !important;
+  cursor: pointer;
+}
+
+.linha-destacada {
+  background: linear-gradient(360deg, #f5f7fa6c 0%, #c3cfe257 100%) !important;
+}
+
+.tabela {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 30px !important;
 }
