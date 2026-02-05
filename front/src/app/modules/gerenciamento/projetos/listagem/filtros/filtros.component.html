@@ -1,11 +1,11 @@
 <mat-card style="margin: 20px !important">
   <mat-card-content style="background-color: #ffffff !important">
     <form [formGroup]="formulario" class="container">
-      <ng-template matStepLabel>Identificação</ng-template>
-
       <div class="field-3 campo-container">
         <label id="titulo-campo">Período de envio</label>
-        <input matInput formControlName="periodoEnvio" placeholder="Selecione o período" />
+        <input matInput [matDatepicker]="periodo" formControlName="periodoEnvio" />
+        <mat-datepicker-toggle [for]="periodo" matSuffix />
+        <mat-datepicker #periodo />
       </div>
 
       <div class="field-3 campo-container">
@@ -20,22 +20,33 @@
 
       <div class="field-3 campo-container">
         <label id="titulo-campo">Status</label>
-        <input matInput formControlName="statusProjeto" placeholder="Seleciona" />
+        <mat-select formControlName="statusProjeto" placeholder="Selecione">
+          <mat-option *ngFor="let status of statusDemandaEnum" [value]="status.id">
+            {{ status.descricao }}
+          </mat-option>
+        </mat-select>
       </div>
 
       <div class="field-3 campo-container">
         <label id="titulo-campo">Prioridade</label>
-        <input matInput formControlName="prioridade" placeholder="Seleciona" />
+        <mat-select formControlName="prioridade" placeholder="Selecione">
+          <mat-option *ngFor="let prioridade of prioridadeEnum" [value]="prioridade.id">
+            {{ prioridade.descricao }}
+          </mat-option>
+        </mat-select>
       </div>
 
       <div class="field-3 campo-container">
         <label id="titulo-campo">Prazo estimado</label>
-        <input matInput formControlName="estimativaTempo" placeholder="Seleciona" />
+
+        <input matInput [matDatepicker]="estimativa" formControlName="estimativaTempo" />
+        <mat-datepicker-toggle [for]="estimativa" matSuffix />
+        <mat-datepicker #estimativa />
       </div>
 
       <mat-card-actions>
-        <button class="salvar" mat-button><mat-icon>search</mat-icon>Filtrar</button>
-        <button class="cancelar" mat-button><mat-icon>clear</mat-icon>Limpar</button>
+        <button class="salvar" mat-button (click)="filtrar()"> <mat-icon>search</mat-icon>Filtrar</button>
+        <button class="cancelar" mat-button (click)="limpar()"><mat-icon>clear</mat-icon>Limpar</button>
       </mat-card-actions>
     </form>
   </mat-card-content>

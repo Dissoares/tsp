@@ -1,1 +1,2 @@
-export * from './login-dto'
+export * from './filtros-dto';
+export * from './login-dto';

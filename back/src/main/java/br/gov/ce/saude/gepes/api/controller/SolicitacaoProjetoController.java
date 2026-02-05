@@ -1,9 +1,12 @@
 package br.gov.ce.saude.gepes.api.controller;
 
+import br.gov.ce.saude.gepes.api.dto.FiltroDTO;
 import br.gov.ce.saude.gepes.domains.entities.SolicitacaoProjeto;
 import br.gov.ce.saude.gepes.domains.service.SolicitacaoProjetoService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
@@ -15,5 +18,10 @@ public class SolicitacaoProjetoController {
     @PostMapping
     public SolicitacaoProjeto salvar(@RequestBody SolicitacaoProjeto Solicitacao) {
         return solicitacaoService.salvar(Solicitacao);
+    }
+
+    @PostMapping("/filtrar")
+    public List<SolicitacaoProjeto> filtrar(@RequestBody FiltroDTO filtro) {
+        return solicitacaoService.filtrar(filtro);
     }
 }

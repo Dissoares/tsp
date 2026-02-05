@@ -1,14 +1,17 @@
 import { ReactiveFormsModule, FormBuilder, FormsModule, FormGroup } from '@angular/forms';
+import { PrioridadeDemandaEnum, StatusDemandaEnum } from '../../../../../core/enums';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { MatTimepickerModule } from '@angular/material/timepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { Component, inject, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { FiltrosDto } from '../../../../../core/dtos';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-filtros',
   standalone: true,
@@ -16,6 +19,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./filtros.component.scss'],
   imports: [
     ReactiveFormsModule,
+    MatTimepickerModule,
+    MatTimepickerModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
@@ -27,7 +33,11 @@ import { Router } from '@angular/router';
   ],
 })
 export class FiltrosComponent implements OnInit {
+  @Output() public filtro = new EventEmitter<any>();
   public formulario!: FormGroup;
+
+  public prioridadeEnum = PrioridadeDemandaEnum.getAll();
+  public statusDemandaEnum = StatusDemandaEnum.getAll();
 
   private readonly router = inject(Router);
 
@@ -48,7 +58,16 @@ export class FiltrosComponent implements OnInit {
     });
   }
 
-  public novoProjeto() {
+  public limpar(): void {
+    this.formulario.reset();
+  }
+
+  public filtrar(): void {
+    const dadosFiltro: FiltrosDto = this.formulario.value;
+    this.filtro.emit(dadosFiltro);
+  }
+
+  public novoProjeto(): void {
     this.router.navigate(['']);
   }
 }

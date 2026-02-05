@@ -13,7 +13,7 @@
   <mat-card style="height: 100vh">
     <mat-card-content>
       <div class="container-gerenciar">
-        <app-filtros></app-filtros>
+        <app-filtros (filtro)="filtrar($event)"></app-filtros>
 
         <div class="tabela">
           <table mat-table [dataSource]="dadosTabela">
