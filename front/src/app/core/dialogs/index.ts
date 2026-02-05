@@ -1,2 +1,3 @@
+export * from './dialog-objetivos-estrategicos/dialog-objetivos-estrategicos.component';
 export * from './dialog-cadastro-usuario/dialog-cadastro-usuario.component';
 export * from './modal-acesso-expirado/modal-acesso-expirado.component';

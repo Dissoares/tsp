@@ -3,6 +3,7 @@ import {
   NadaEncontradoComponent,
 } from '../../../core/components/index.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogObjetivosEstrategicosComponent } from '../../../core/dialogs';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { SolicitacaoProjetosService } from '../../../core/services';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +15,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 import { RespostaEnum } from '../../../core/enums';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
@@ -45,8 +47,9 @@ export class FormularioComponent implements OnInit {
   public respostaEnum = RespostaEnum.getAll();
 
   private readonly solicitacaoService = inject(SolicitacaoProjetosService);
-  private readonly router = inject(Router);
+  private readonly dadosDialog = inject(MatDialog);
   private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
 
   constructor(public fb: FormBuilder) {}
 
@@ -100,6 +103,17 @@ export class FormularioComponent implements OnInit {
         },
       });
     }
+  }
+
+  public adicionarObjetivosEstrategicos(): void {
+    const dialogRef = this.dadosDialog.open(DialogObjetivosEstrategicosComponent, {
+      width: '900px',
+      maxWidth: '90vw',
+      disableClose: false,
+      backdropClass: 'fundo-modal',
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {});
   }
 
   public verificarCamposValidos(solicitacao: SolicitacaoProjeto): boolean {
