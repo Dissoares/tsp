@@ -1,3 +1,73 @@
 <mat-toolbar>
-  <mat-card-title><mat-icon>add</mat-icon>Adicionar Objetivos estratégicos da Sesa</mat-card-title>
+  <mat-card-title><mat-icon>add</mat-icon>ADICIONAR OBJETIVOS ESTRATÉGICOS DA SESA</mat-card-title>
 </mat-toolbar>
+
+<mat-card>
+  <mat-card-content>
+    <div class="dialog-container">
+      <div class="tabela">
+        <mat-form-field style="width: 100%">
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput placeholder="Buscar por nome do objetivo, secretaria ou coordenadoria..."
+            (keyup)="aplicarFiltro($event)" />
+
+          <span class="espaco-menu"></span>
+          <button class="limpar" mat-button matSuffix (click)="limparFiltro()">
+            Limpar seleção
+          </button>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dadosTabela">
+          <ng-container matColumnDef="secretariaExecutiva">
+            <th style="text-align: center; width: 15%" mat-header-cell *matHeaderCellDef>
+              Secretaria executiva
+            </th>
+            <td mat-cell *matCellDef="let projeto">
+              {{ projeto.secretariaExecutiva }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="coordenadoria">
+            <th style="width: 15%" mat-header-cell *matHeaderCellDef>Coordenadoria</th>
+            <td mat-cell *matCellDef="let projeto">
+              {{ projeto.coordenadoria }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="objetivo">
+            <th style="width: 55%" mat-header-cell *matHeaderCellDef>Objetivo</th>
+            <td mat-cell *matCellDef="let projeto">
+              {{ projeto.objetivo }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="selecionar">
+            <th style="width: 15%; text-align: center" mat-header-cell *matHeaderCellDef>
+              Selecionar objetivos
+            </th>
+            <td mat-cell *matCellDef="let projeto">
+              <button mat-mini-fab color="primary">
+                <mat-icon>add</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
+          <tr mat-row *matRowDef="let row; let i = index; columns: colunasTabela"
+            [ngClass]="{ 'linha-destacada': i % 2 === 0 }"></tr>
+        </table>
+
+        <mat-paginator [length]="dadosTabela.data.length" [pageSize]="6" [pageSizeOptions]="[6]"
+          [showFirstLastButtons]="true">
+        </mat-paginator>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button class="cancelar" mat-button (click)="cancelar()"><mat-icon>close</mat-icon>Cancelar</button>
+    <button class="adicionar" mat-button (click)="adicionar(colunasTabela)">
+      <mat-icon>add</mat-icon>Adicionar
+    </button>
+  </mat-card-actions>
+</mat-card>

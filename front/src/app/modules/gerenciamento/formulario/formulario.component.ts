@@ -107,7 +107,7 @@ export class FormularioComponent implements OnInit {
 
   public adicionarObjetivosEstrategicos(): void {
     const dialogRef = this.dadosDialog.open(DialogObjetivosEstrategicosComponent, {
-      width: '900px',
+      width: '95%',
       maxWidth: '90vw',
       disableClose: false,
       backdropClass: 'fundo-modal',

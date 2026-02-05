@@ -1,9 +1,92 @@
+.tabela {
+  padding: 20px;
+  background: #ffffff !important;
+  border-radius: 16px;
+}
+
 mat-toolbar {
+  display: flex;
+  align-items: center !important;
   background-color: #0e534e !important;
   color: #fff;
-  border-radius: 0px !important;
+  border-bottom: solid 2px #fa8910 !important;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
 }
 
 mat-card {
-  border-radius: 0px !important;
+  background-color: #eaeaea;
+  width: 100% !important;
+  height: 70vh;
+}
+
+.mat-mdc-header-row {
+  background: #0e534e !important;
+  color: #ffffff !important;
+  height: 55px !important;
+  text-transform: uppercase;
+}
+
+mat-form-field {
+  background: #fff;
+  border-radius: 6px;
+}
+
+.espaco-menu {
+  flex: 1;
+}
+
+.limpar {
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: #0e534e !important;
+  border: solid 1px #0e534e !important;
+  margin: 10px !important;
+}
+
+.adicionar {
+  background: #0e534e !important;
+}
+
+.cancelar {
+  background-color: #fa8910 !important;
+}
+
+.cancelar,
+.adicionar {
+  color: #fff !important;
+  width: 160px;
+  border: none !important;
+}
+
+::ng-deep .mat-mdc-form-field .mdc-text-field {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background-color: #ffffff !important;
+  border-bottom: solid 1px #0e534e !important;
+}
+
+::ng-deep .mat-mdc-form-field .mdc-text-field:focus {
+  border-bottom: 3px solid #0f5b50 !important;
+}
+
+.mat-mdc-mini-fab {
+  box-shadow: none !important;
+  background-color: #e6e6e6;
+  margin: 5px !important;
+  color: #0f5b50 !important;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px;
+  gap: 16px;
 }
