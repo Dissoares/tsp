@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(
                 "/api/auth/**",
+                "/api/solicitacao/**", //!REMOVER
                 "/api/usuario/**",
                 "/swagger-ui.html",
                 "/swagger-ui/**",
