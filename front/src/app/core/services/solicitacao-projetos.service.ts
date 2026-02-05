@@ -18,6 +18,13 @@ export class SolicitacaoProjetosService {
     return this.http.post<SolicitacaoProjeto>(this.apiUrl + this.endPointUrl, solicitacao);
   }
 
+  public listaProjetos(): Observable<Array<SolicitacaoProjeto>> {
+    return this.http.get<Array<SolicitacaoProjeto>>(
+      `${this.apiUrl}${this.endPointUrl}/listar`,
+      {},
+    );
+  }
+
   public filtrarPor(filtro: FiltrosDto): Observable<Array<SolicitacaoProjeto>> {
     const params = new HttpParams({ fromObject: this.camposFiltrados(filtro) });
     return this.http.post<Array<SolicitacaoProjeto>>(`${this.apiUrl}${this.endPointUrl}/filtrar`, {

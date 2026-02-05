@@ -18,6 +18,10 @@ public class SolicitacaoProjetoService {
         return solicitacaoRepository.save(solicitacao);
     }
 
+    public List<SolicitacaoProjeto> listar() {
+        return solicitacaoRepository.findAll();
+    }
+
     public List<SolicitacaoProjeto> filtrar(FiltroDTO filtro) {
         Specification<SolicitacaoProjeto> spec = Specification.where(null);
 

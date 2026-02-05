@@ -24,4 +24,9 @@ public class SolicitacaoProjetoController {
     public List<SolicitacaoProjeto> filtrar(@RequestBody FiltroDTO filtro) {
         return solicitacaoService.filtrar(filtro);
     }
+
+    @GetMapping("/listar")
+    public List<SolicitacaoProjeto> listar() {
+        return solicitacaoService.listar();
+    }
 }

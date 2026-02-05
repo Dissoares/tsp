@@ -1,6 +1,6 @@
 import { ReactiveFormsModule, FormBuilder, FormsModule, FormGroup } from '@angular/forms';
 import { PrioridadeDemandaEnum, StatusDemandaEnum } from '../../../../../core/enums';
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatTimepickerModule } from '@angular/material/timepicker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { FiltrosDto } from '../../../../../core/dtos';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-filtros',
   standalone: true,
@@ -39,8 +38,6 @@ export class FiltrosComponent implements OnInit {
   public prioridadeEnum = PrioridadeDemandaEnum.getAll();
   public statusDemandaEnum = StatusDemandaEnum.getAll();
 
-  private readonly router = inject(Router);
-
   constructor(public fb: FormBuilder) {}
 
   public ngOnInit(): void {
@@ -65,9 +62,5 @@ export class FiltrosComponent implements OnInit {
   public filtrar(): void {
     const dadosFiltro: FiltrosDto = this.formulario.value;
     this.filtro.emit(dadosFiltro);
-  }
-
-  public novoProjeto(): void {
-    this.router.navigate(['']);
   }
 }

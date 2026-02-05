@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FiltrosDto } from '../../../../core/dtos';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-listagem',
   standalone: true,
@@ -54,10 +55,13 @@ export class ListagemComponent implements OnInit {
 
   private readonly solicitacaoService = inject(SolicitacaoProjetosService);
   private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+
   constructor(public fb: FormBuilder) {}
 
   public ngOnInit(): void {
     this.criarFormulario();
+    this.listarProjetos();
   }
 
   public criarFormulario(): void {
@@ -68,6 +72,19 @@ export class ListagemComponent implements OnInit {
       statusProjeto: [null],
       prioridade: [null],
       estimativaTempo: [null],
+    });
+  }
+
+  public listarProjetos() {
+    this.solicitacaoService.listaProjetos().subscribe({
+      next: (lista: Array<SolicitacaoProjeto>) => {
+        this.dadosTabela.data = lista;
+        this.dadosTabela.paginator = this.paginator;
+      },
+      error: (erro) => {
+        this.toastr.error('Erro ao listar solicitações', 'Erro!');
+        console.error(erro);
+      },
     });
   }
 
@@ -98,4 +115,8 @@ export class ListagemComponent implements OnInit {
   }
 
   public visualizar(solicitacao: SolicitacaoProjeto): void {}
+
+  public novoProjeto(): void {
+    this.router.navigate(['gerenciamento/solicitacao']);
+  }
 }
