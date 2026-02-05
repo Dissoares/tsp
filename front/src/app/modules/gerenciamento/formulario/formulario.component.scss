@@ -13,13 +13,6 @@ mat-card-footer {
   margin-top: 30px;
 }
 
-mat-card-header,
-mat-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .barra-enviar {
   border: solid 1px #afafaf !important;
   border-radius: 12px;
@@ -28,58 +21,8 @@ mat-card-footer {
   justify-content: space-between;
 }
 
-textarea {
-  margin: 10px !important;
-  border: none !important;
-  border-bottom: 1px solid #0f5b50 !important;
-}
-
-textarea:focus {
-  margin: 10px !important;
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-  border-bottom: 3px solid #0f5b50 !important;
-}
-
 .spaco-menu {
   flex: 1;
-}
-
-h2 {
-  font-size: 20px;
-  color: #0f5b50;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-::ng-deep app-erro {
-  padding-left: 5px !important;
-  font-size: 12px !important;
-  margin-top: 0px !important;
-  color: rgb(109, 0, 0) !important;
-}
-
-.campo-container {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-#titulo-campo {
-  font-weight: 600;
-  color: #1f6f63;
-  margin-top: 20px;
-}
-
-.campo-container input {
-  border: none;
-  border-bottom: 1px solid #1f6f63;
-  font-size: 15px;
-  outline: none;
-  background: #fff;
-  padding: 15px;
-  height: 25px !important;
 }
 
 ::ng-deep .mat-mdc-select,
@@ -95,24 +38,6 @@ div.mat-mdc-select-panel {
 .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
   background-color: #0f5b50 !important;
   color: #fff !important;
-}
-
-.campo-container input:focus,
-.campo-container textarea:focus {
-  border-bottom: 3px solid #1f6f63;
-}
-
-.campo-container input::placeholder {
-  font-size: 15px;
-  color: #9e9e9e;
-  opacity: 1;
-}
-
-.campo-container .mat-mdc-input-element,
-.campo-container input,
-.campo-container textarea,
-.campo-container input::placeholder {
-  font-family: 'Poppins', sans-serif !important;
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container {
@@ -222,19 +147,9 @@ div.mat-mdc-select-panel {
     margin-top: -6px;
   }
 
-  .campo-container {
-    gap: 4px;
-  }
-
   #titulo-campo {
     margin-top: 12px;
     font-size: 14px;
-  }
-
-  .campo-container input {
-    font-size: 14px;
-    padding: 10px;
-    height: auto !important;
   }
 
   button.mat-button,

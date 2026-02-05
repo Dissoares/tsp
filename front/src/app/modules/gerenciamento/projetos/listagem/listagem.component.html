@@ -1,5 +1,16 @@
-<app-filtros></app-filtros>
-<p>
-  listagem works!
-</p>
->
+<div style="background-color: #f6f6f6 !important">
+  <mat-toolbar>
+    <mat-card-header style="margin: 10px;">
+      <mat-card-title>
+        <h2>Meus projetos</h2>
+      </mat-card-title>
+      <mat-card-subtitle>Gerencie suas propostas de projeto</mat-card-subtitle>
+    </mat-card-header>
+
+    <button class="add" mat-button><mat-icon>add</mat-icon>Novo projeto</button>
+  </mat-toolbar>
+
+  <mat-card>
+    <mat-card-content><app-filtros></app-filtros></mat-card-content>
+  </mat-card>
+</div>

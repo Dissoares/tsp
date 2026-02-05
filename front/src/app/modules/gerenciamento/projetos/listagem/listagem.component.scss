@@ -1,0 +1,21 @@
+mat-toolbar {
+  display: flex !important;
+  justify-content: space-between !important;
+  background: #f5f3f3;
+}
+
+mat-card-content {
+  border-radius: 16px !important;
+}
+
+mat-card-subtitle {
+  font-size: 14px;
+  color: #717182;
+}
+
+.add {
+  width: 180px;
+  background-color: #0e534e !important;
+  color: #fff !important;
+  margin: 30px;
+}
