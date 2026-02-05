@@ -1,16 +1,12 @@
 @use '@angular/material' as mat;
 
 html {
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
+  @include mat.theme((color: (primary: mat.$azure-palette,
         tertiary: mat.$blue-palette,
       ),
       typography: 'Poppins, sans-serif',
       density: 0,
-    )
-  );
+    ));
 }
 
 body {
@@ -91,6 +87,7 @@ mat-card-footer {
 }
 
 @media (max-width: 768px) {
+
   .field-1,
   .field-2,
   .field-3,
@@ -204,3 +201,4 @@ h2 {
 .spaco-menu {
   flex: 1;
 }
+
