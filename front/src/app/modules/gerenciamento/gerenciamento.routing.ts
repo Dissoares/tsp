@@ -4,7 +4,7 @@ export const GERENCIAMENTO: Routes = [
   {
     path: 'dashboard',
     loadComponent: () =>
-      import('./formulario/formulario.component').then((c) => c.FormularioComponent),
+      import('./dashboard/dashboard.component').then((c) => c.DashboardComponent),
   },
   {
     path: 'projetos',
