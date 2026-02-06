@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001-criando-tabela-usuario
+      author: diego.soares
+      changes:
+        - createTable:
+            tableName: usuario
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: nome
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: cpf
+                  type: VARCHAR(11)
+                  constraints:
+                    unique: true
+
+              - column:
+                  name: senha
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: perfil
+                  type: INTEGER
+
+              - column:
+                  name: criado_por
+                  type: BIGINT
+
+              - column:
+                  name: data_criacao
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: modificado_por
+                  type: BIGINT
+
+              - column:
+                  name: data_modificacao
+                  type: TIMESTAMP
+
+              - column:
+                  name: ativo
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: usuario
+            baseColumnNames: criado_por
+            referencedTableName: usuario
+            referencedColumnNames: id
+            constraintName: fk_usuario_criado_por
+            onDelete: SET NULL
+
+        - addForeignKeyConstraint:
+            baseTableName: usuario
+            baseColumnNames: modificado_por
+            referencedTableName: usuario
+            referencedColumnNames: id
+            constraintName: fk_usuario_modificado_por
+            onDelete: SET NULL

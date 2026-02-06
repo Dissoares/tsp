@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0000-limpar-tabelas-existentes
+      author: diego.soares
+      changes:
+        - dropTable:
+            tableName: solicitacao_objetivo_estrategico
+            cascadeConstraints: true
+            
+        - dropTable:
+            tableName: solicitacao_projeto
+            cascadeConstraints: true
+            
+        - dropTable:
+            tableName: objetivos_estrategicos
+            cascadeConstraints: true
+            
+        - dropTable:
+            tableName: usuario
+            cascadeConstraints: true
+      preConditions:
+        onFail: MARK_RAN
+        or:
+          - tableExists:
+              tableName: solicitacao_objetivo_estrategico
+          - tableExists:
+              tableName: solicitacao_projeto
+          - tableExists:
+              tableName: objetivos_estrategicos
+          - tableExists:
+              tableName: usuario
