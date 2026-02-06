@@ -5,23 +5,23 @@
         <mat-icon>account_balance</mat-icon>
         <h1>TSP</h1>
       </div>
-      <h2>Gestão de Projetos Estratégicos da SESA</h2>
+      <h2>Crie sua conta</h2>
       <p class="description">
-        Sistema integrado para gestão centralizada de projetos estratégicos da Secretaria de Saúde
-        do Estado, garantindo eficiência, transparência e alinhamento com as metas institucionais.
+        Faça parte do sistema integrado para gestão centralizada de projetos estratégicos da Secretaria de Saúde
+        do Estado e contribua para um futuro mais eficiente e transparente.
       </p>
       <div class="features">
         <div class="feature-item">
-          <mat-icon>hub</mat-icon>
-          <span>Gestão Centralizada</span>
+          <mat-icon>person_add</mat-icon>
+          <span>Cadastro Simplificado</span>
         </div>
         <div class="feature-item">
-          <mat-icon>account_tree</mat-icon>
-          <span>Fluxo Institucional</span>
+          <mat-icon>security</mat-icon>
+          <span>Acesso Seguro</span>
         </div>
         <div class="feature-item">
-          <mat-icon>visibility</mat-icon>
-          <span>Acompanhamento e Transparência</span>
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Perfis Personalizados</span>
         </div>
       </div>
       <div class="footer-logos">
@@ -38,26 +38,26 @@
 
   <div class="auth-form">
     <mat-card>
-      <div class="login-header">
-        <h1>Fazer Login</h1>
-        <p>Acessar o TSP</p>
+      <div class="cadastro-header">
+        <h1>Criar Conta</h1>
+        <p>Cadastre-se no TSP</p>
       </div>
 
-      <form [formGroup]="formulario" (ngSubmit)="ehCadastro ? cadastrar() : login()">
-        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
-          <mat-label>Nome</mat-label>
+      <form [formGroup]="formulario" (ngSubmit)="cadastrar()">
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>Nome Completo</mat-label>
           <mat-icon matPrefix>badge</mat-icon>
-          <input matInput formControlName="nome" placeholder="Digite seu nome" />
+          <input matInput formControlName="nome" placeholder="Digite seu nome completo" />
           <mat-error>
             <app-erro [dadosCampo]="formulario.get('nome')"></app-erro>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="login-field">
-          <mat-label>E-mail</mat-label>
+          <mat-label>E-mail Institucional</mat-label>
           <mat-icon matPrefix>email</mat-icon>
-          <input matInput type="email" formControlName="email" placeholder="Digite seu e-mail" />
-          <mat-hint>Use seu institucional cadastrado</mat-hint>
+          <input matInput type="email" formControlName="email" placeholder="Digite seu e-mail institucional" />
+          <mat-hint>Use seu e-mail institucional da SESA</mat-hint>
           <mat-error>
             <app-erro [dadosCampo]="formulario.get('email')"></app-erro>
           </mat-error>
@@ -67,17 +67,18 @@
           <mat-label>Senha</mat-label>
           <mat-icon matPrefix>lock</mat-icon>
           <input matInput [type]="mostrarSenha ? 'text' : 'password'" formControlName="senha"
-            placeholder="Digite sua senha" />
+            placeholder="Crie uma senha segura" />
           <button mat-icon-button matSuffix (click)="mostrarSenha = !mostrarSenha" type="button">
             <mat-icon>{{ mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
+          <mat-hint>Mínimo 6 caracteres</mat-hint>
           <mat-error>
             <app-erro [dadosCampo]="formulario.get('senha')"></app-erro>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
-          <mat-label>Repita Senha</mat-label>
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>Confirmar Senha</mat-label>
           <mat-icon matPrefix>lock</mat-icon>
           <input matInput [type]="mostrarConfirmarSenha ? 'text' : 'password'" formControlName="confirmarSenha"
             placeholder="Digite sua senha novamente" />
@@ -89,36 +90,40 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
-          <mat-label>Perfil</mat-label>
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>Perfil de Acesso</mat-label>
           <mat-icon matPrefix>person</mat-icon>
           <mat-select formControlName="perfil">
+            <mat-option value="">Selecione um perfil</mat-option>
             <mat-option *ngFor="let perfil of listaPerfilEnum" [value]="perfil.id">
               {{ perfil.descricao }}
             </mat-option>
           </mat-select>
+          <mat-hint>Selecione seu perfil de acesso no sistema</mat-hint>
           <mat-error>
             <app-erro [dadosCampo]="formulario.get('perfil')"></app-erro>
           </mat-error>
         </mat-form-field>
 
         <div class="form-options">
-          <mat-checkbox class="remember-checkbox">Lembrar de mim</mat-checkbox>
-          <a href="#" class="forgot-password">Esqueci minha senha</a>
+          <mat-checkbox class="terms-checkbox">
+            Li e concordo com os termos de uso e política de privacidade
+          </mat-checkbox>
         </div>
 
-        <button type="submit" mat-flat-button class="login-button" [disabled]="formulario.invalid">
-          Entrar
-          <mat-icon>arrow_forward</mat-icon>
+        <button type="submit" mat-flat-button class="cadastro-button" [disabled]="formulario.invalid">
+          Criar Conta
+          <mat-icon>person_add</mat-icon>
+        </button>
+
+        <button type="button" mat-stroke-button class="voltar-button" (click)="voltarParaLogin()">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar para o Login
         </button>
       </form>
 
-      <div class="login-footer">
-        <p>Uso exclusivo de servidores da SESA</p>
-        <p class="cadastro-link">
-          Ainda não tem conta? 
-          <a routerLink="/cadastro">Cadastre-se aqui</a>
-        </p>
+      <div class="cadastro-footer">
+        <p>Ao se cadastrar, você concorda com as políticas da SESA</p>
       </div>
     </mat-card>
   </div>
