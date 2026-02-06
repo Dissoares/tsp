@@ -214,3 +214,33 @@ h2 {
   background-color: #df8805 !important;
   color: #fff !important;
 }
+
+.mat-mdc-mini-fab {
+  box-shadow: none !important;
+  background-color: #e6e6e6;
+  margin: 5px !important;
+  color: #0f5b50 !important;
+}
+
+.mat-mdc-mini-fab.mat-warn {
+  background-color: #e6e6e6;
+}
+
+.mat-mdc-mini-fab.mat-primary {
+  background-color: #e6e6e6;
+}
+
+.mat-mdc-header-row {
+  background: #0e534e !important;
+  color: #ffffff !important;
+  height: 55px !important;
+  text-transform: uppercase;
+}
+
+.mat-mdc-row:hover {
+  cursor: pointer;
+}
+
+.linha-destacada {
+  background: #ffffff !important;
+}
