@@ -6,29 +6,25 @@
   <mat-dialog-content>
     <mat-icon class="icone-aviso"> {{ dados.icone ? dados.icone : 'gpp_maybe' }}</mat-icon>
     <mat-card-header>
-      <mat-card-title>{{ dados.titulo || "Confirmação" }}</mat-card-title>
+      <mat-card-title>{{ dados.titulo || 'Confirmação' }}</mat-card-title>
     </mat-card-header>
     <mat-card-subtitle>
-      {{
-      dados.mensagem
-      ? dados.mensagem
-      : " Tem certeza que deseja " + dados.acao
-      }}
+      {{ dados.mensagem ? dados.mensagem : ' Tem certeza que deseja ' + dados.acao }}
     </mat-card-subtitle>
 
     <p class="alerta">
-      {{ dados.alerta || "Essa ação não poderá ser desfeita." }}
+      {{ dados.alerta || 'Essa ação não poderá ser desfeita.' }}
     </p>
   </mat-dialog-content>
 
   <mat-dialog-actions class="acoes">
-    <button type="button" mat-flat-button class="btn-primary" (click)="aoConfirmar()">
-      <mat-icon>check</mat-icon>
-      {{ dados.textoConfirmacao || "Confirmar" }}
+    <button type="button" mat-flat-button class="salvar" (click)="aoConfirmar()">
+      <mat-icon>task_alt</mat-icon>
+      {{ dados.textoConfirmacao || 'Confirmar' }}
     </button>
-    <button type="button" mat-flat-button class="btn-secondary" (click)="aoCancelar()">
-      <mat-icon>cancel</mat-icon>
-      {{ dados.textoCancelamento || "Cancelar" }}
+    <button type="button" mat-flat-button class="cancelar" (click)="aoCancelar()">
+      <mat-icon>highlight_off</mat-icon>
+      {{ dados.textoCancelamento || 'Cancelar' }}
     </button>
   </mat-dialog-actions>
 </mat-card>

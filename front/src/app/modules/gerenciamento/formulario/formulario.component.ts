@@ -2,13 +2,17 @@ import {
   ErrosFormularioComponent,
   NadaEncontradoComponent,
 } from '../../../core/components/index.component';
+import {
+  ObjetivosEstrategicosService,
+  SolicitacaoProjetosService,
+  DialogConfirmacaoService,
+} from '../../../core/services';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { DialogObjetivosEstrategicosComponent } from '../../../core/dialogs';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { SolicitacaoProjetosService } from '../../../core/services';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
@@ -60,6 +64,8 @@ export class FormularioComponent implements OnInit {
   ];
 
   private readonly solicitacaoService = inject(SolicitacaoProjetosService);
+  private readonly objetivosService = inject(ObjetivosEstrategicosService);
+  private readonly confirmacaoDialog = inject(DialogConfirmacaoService);
   private readonly dadosDialog = inject(MatDialog);
   private readonly toastr = inject(ToastrService);
   private readonly router = inject(Router);
@@ -163,7 +169,25 @@ export class FormularioComponent implements OnInit {
   }
 
   public excluir(item: any): void {
-    this.dadosTabela.data = this.dadosTabela.data.filter((s) => s.id !== item.id);
-    this.toastr.info('Item excluído!', 'Aviso!');
+    this.confirmacaoDialog
+      .openDialog({
+        titulo: 'Confirmação!',
+        acao: 'excluir',
+        textoConfirmacao: 'Excluir',
+        textoCancelamento: 'Cancelar',
+      })
+      .subscribe((resultado) => {
+        if (!resultado) return;
+        this.dadosTabela.data = this.dadosTabela.data.filter(
+          (objetivos: any) => objetivos.id !== item.id,
+        );
+
+        const itensAtualizados = this.objetivosService.selecionados.filter(
+          (objetivos: any) => objetivos.id !== item.id,
+        );
+        this.objetivosService.adicionarSelecionados(itensAtualizados);
+
+        this.toastr.info('Item excluído!', 'Aviso!');
+      });
   }
 }

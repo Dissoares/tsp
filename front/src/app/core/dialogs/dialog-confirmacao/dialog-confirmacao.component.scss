@@ -1,8 +1,6 @@
 ::ng-deep .cdk-overlay-backdrop {
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  background: rgba(0, 0, 0, 0.322) !important;
+  transition: all 1s ease !important;
 }
 
 mat-dialog-content {
@@ -45,7 +43,7 @@ mat-card-subtitle {
   width: 60px;
   height: 60px;
   font-size: 60px;
-  color: #730000;
+  color: #0e534e;
 }
 
 .alerta {
@@ -56,7 +54,7 @@ mat-card-subtitle {
 }
 
 .btn-fechar {
-  color: #fff;
+  color: #0e534e;
   position: absolute;
   right: 8px;
   top: 8px;
