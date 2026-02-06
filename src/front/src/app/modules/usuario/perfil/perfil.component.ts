@@ -8,6 +8,7 @@ import { AuthService, UsuarioService } from '../../../core/services';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Component, inject, OnInit } from '@angular/core';
@@ -34,6 +35,7 @@ import { DateTime } from 'luxon';
     CabecalhoComponent,
     MatFormFieldModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
@@ -49,6 +51,7 @@ export class PerfilComponent extends CamposFormularioComponent implements OnInit
   public mostrarConfirmarSenha: boolean = false;
   public temImagemNoBanco: boolean = false;
   public progressoUpload: boolean = false;
+  public ehEdicaoSenha: boolean = false;
   public mostrarSenha: boolean = false;
   public ehCadastro: boolean = false;
   public ehEdicao: boolean = false;
@@ -107,8 +110,9 @@ export class PerfilComponent extends CamposFormularioComponent implements OnInit
         }
 
         this.formulario.patchValue(usuario as UsuarioToken);
-
         if (usuario && usuario?.id) {
+          
+                  console.log("💡=> => PerfilComponent => preencherFormulario => usuario:", usuario)
           this.usuarioService.buscarImagemPerfil(usuario.id).subscribe({
             next: (response: any) => {
               try {
@@ -165,6 +169,10 @@ export class PerfilComponent extends CamposFormularioComponent implements OnInit
   public alterarSenha(): void {
     const usuario = this.formulario.getRawValue();
     usuario.dataCriacao = null;
+    this.ehEdicaoSenha = true;
+    console.log("💡=> => PerfilComponent => alterarSenha => this.ehEdicaoSenha:", this.ehEdicaoSenha)
+    this.ehCadastro = false;
+    this.ehEdicao = false;
 
     this.usuarioService.salvar(usuario).subscribe({
       next: () => {
@@ -184,7 +192,7 @@ export class PerfilComponent extends CamposFormularioComponent implements OnInit
   }
 
   public cancelar(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['/perfil']);
   }
 
   public onFileSelected(event: Event): void {
@@ -197,8 +205,8 @@ export class PerfilComponent extends CamposFormularioComponent implements OnInit
         return;
       }
 
-      if (file.size > 5 * 1024 * 1024) {
-        this.toastr.error('A imagem deve ter no máximo 5MB.', 'Erro!');
+      if (file.size > 11 * 1024 * 1024) {
+        this.toastr.error('A imagem deve ter no máximo 10MB.', 'Erro!');
         return;
       }
 

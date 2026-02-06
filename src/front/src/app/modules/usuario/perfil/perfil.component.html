@@ -6,7 +6,58 @@
 </mat-toolbar>
 
 <div class="auth-form">
-  <mat-card><mat-card-content>
+  <mat-card>
+    <mat-card-content>
+      @if (!ehEdicaoSenha) {
+      <div class="secao-imagem-perfil field-12">
+        <mat-label class="titulo-secao">Imagem de Perfil</mat-label>
+
+        <div class="container-imagem">
+          @if (visualizacaoImagem || linkImagem) {
+          <img [src]="visualizacaoImagem || linkImagem" alt="Imagem de perfil" class="previsualizacao-imagem" />
+          } @else {
+          <div class="sem-imagem-circulo" (click)="fileInput.click()"
+            matTooltip="Clique para adicionar uma imagem de perfil" matTooltipPosition="right">
+            <mat-icon>add_a_photo</mat-icon>
+          </div>
+          }
+
+          @if (progressoUpload) {
+          <div class="sobreposicao-upload">
+            <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+          </div>
+          }
+        </div>
+
+        <div class="acoes-imagem">
+          <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)" />
+
+          @if (ehEdicao || visualizacaoImagem || linkImagem) {
+          <button mat-stroked-button type="button" (click)="fileInput.click()" [disabled]="progressoUpload"
+            class="cancelar">
+            <mat-icon>upload</mat-icon>
+            {{ linkImagem ? 'Alterar' : 'Adicionar' }}
+          </button>
+
+          @if (visualizacaoImagem) {
+          <button mat-stroked-button type="button" (click)="cancelarUpload()" [disabled]="progressoUpload"
+            class="cancelar">
+            <mat-icon>cancel</mat-icon>
+            Cancelar
+          </button>
+          }
+
+          @if (linkImagem && !visualizacaoImagem) {
+          <button mat-stroked-button color="warn" type="button" (click)="removerImagem()" [disabled]="progressoUpload"
+            class="cancelar">
+            <mat-icon>delete</mat-icon>
+            Remover
+          </button>
+          }
+          }
+        </div>
+      </div>
+      }
       <form [formGroup]="formulario" class="container">
         @if (!ehEdicao) {
         <mat-form-field appearance="outline" class="field-12">
@@ -37,59 +88,12 @@
           <input matInput type="text" formControlName="dataCriacao" />
         </mat-form-field>
 
-        <div class="imagem-perfil-section field-12">
-          <mat-label class="section-title">Imagem de Perfil</mat-label>
-
-          <div class="imagem-container">
-            @if (visualizacaoImagem || linkImagem) {
-            <img [src]="visualizacaoImagem || linkImagem" alt="Imagem de perfil" class="imagem-preview" />
-            } @else {
-            <div class="sem-imagem-circle" (click)="fileInput.click()">
-              <mat-icon>add_a_photo</mat-icon>
-            </div>
-            }
-
-            @if (progressoUpload) {
-            <div class="upload-overlay">
-              <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
-            </div>
-            }
-          </div>
-
-          <div class="imagem-actions">
-            <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)" />
-
-            @if (!ehEdicao) {
-            <button mat-stroked-button type="button" (click)="editarDadosPerfil()">
-              <mat-icon>edit</mat-icon>
-              Editar Perfil
-            </button>
-            }
-
-            @if (ehEdicao || visualizacaoImagem || linkImagem) {
-            <button mat-stroked-button type="button" (click)="fileInput.click()" [disabled]="progressoUpload">
-              <mat-icon>upload</mat-icon>
-              {{ linkImagem ? 'Alterar Imagem' : 'Adicionar Imagem' }}
-            </button>
-
-            @if (visualizacaoImagem) {
-            <button mat-stroked-button type="button" (click)="cancelarUpload()" [disabled]="progressoUpload">
-              <mat-icon>cancel</mat-icon>
-              Cancelar
-            </button>
-            }
-
-            @if (linkImagem && !visualizacaoImagem) {
-            <button mat-stroked-button color="warn" type="button" (click)="removerImagem()" [disabled]="progressoUpload">
-              <mat-icon>delete</mat-icon>
-              Remover Imagem
-            </button>
-            }
-            }
-          </div>
-        </div>
+        <button mat-stroked-button type="button" (click)="editarDadosPerfil()" class="field-12 alterar-senha">
+          <mat-icon>edit</mat-icon>
+          Alterar senha
+        </button>
         }
-        @if (ehEdicao) {
+        @if (ehEdicao && !visualizacaoImagem) {
         <mat-form-field appearance="outline" floatLabel="always" class="field-12">
           <mat-label>Senha</mat-label>
           <mat-icon matPrefix>lock</mat-icon>
@@ -117,7 +121,7 @@
         </mat-form-field>
         }
 
-        @if (ehEdicao) {
+        @if (ehEdicao && !visualizacaoImagem) {
         <mat-card-footer>
           <button class="salvar" type="submit" mat-flat-button (click)="alterarSenha()">
             Salvar
