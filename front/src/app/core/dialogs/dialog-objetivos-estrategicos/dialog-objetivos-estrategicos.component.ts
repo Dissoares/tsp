@@ -35,6 +35,7 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
   private readonly toastr = inject(ToastrService);
 
   public dadosTabela = new MatTableDataSource<ObjetivosEstrategicos>([]);
+  public listaObjetivosEstrategico: Array<ObjetivosEstrategicos> = [];
   public objetivosSelecionados = new Set<ObjetivosEstrategicos>();
 
   public colunasTabela: Array<string> = [
@@ -42,82 +43,6 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
     'coordenadoria',
     'objetivo',
     'selecionar',
-  ];
-
-  public listaObjetivosEstrategico = [
-    {
-      id: 1,
-      secretariaExecutiva: 'SEADE',
-      coordenadoria: 'SEVIG',
-      descricaoObjetivo: 'Implementação da carteira de serviços das regiões de saúde',
-    },
-    {
-      id: 2,
-      secretariaExecutiva: 'SEADE',
-      coordenadoria: 'SESA',
-      descricaoObjetivo: 'Incorporação dos serviços de alta complexidade nos hospitais regionais',
-    },
-    {
-      id: 3,
-      secretariaExecutiva: 'SEVIG',
-      coordenadoria: 'COVIS',
-      descricaoObjetivo: 'Gestão sanitária da segurança do paciente en serviços de saúde pública',
-    },
-    {
-      id: 4,
-      secretariaExecutiva: 'SEVIG',
-      coordenadoria: 'COVIG',
-      descricaoObjetivo: 'Observatóriode causas externas do estado do ceará',
-    },
-    {
-      id: 5,
-      secretariaExecutiva: 'SPOS',
-      coordenadoria: 'COPIS',
-      descricaoObjetivo: 'Programa cuidar melhor',
-    },
-    {
-      id: 6,
-      secretariaExecutiva: 'SPOS',
-      coordenadoria: 'COFAP',
-      descricaoObjetivo:
-        'Apoio à implantação e implementação dos serviços de farmácia clínica nos hospitais da rede sesa',
-    },
-    {
-      id: 7,
-      secretariaExecutiva: 'SESA',
-      coordenadoria: 'COLOG',
-      descricaoObjetivo: 'Otimizar logística de insumos',
-    },
-    {
-      id: 8,
-      secretariaExecutiva: 'SESA',
-      coordenadoria: 'COPLAN',
-      descricaoObjetivo: 'Planejar metas estratégicas anuais',
-    },
-    {
-      id: 9,
-      secretariaExecutiva: 'SEADE',
-      coordenadoria: '',
-      descricaoObjetivo: 'Implementação da carteira de serviços das regiões de saúde',
-    },
-    {
-      id: 10,
-      secretariaExecutiva: 'SEADE',
-      coordenadoria: '',
-      descricaoObjetivo: 'Incorporação dos serviços de alta complexidade nos hospitais regionais',
-    },
-    {
-      id: 11,
-      secretariaExecutiva: 'SEVIG',
-      coordenadoria: 'COVIS',
-      descricaoObjetivo: 'Gestão sanitária da segurança do paciente en serviços de saúde pública',
-    },
-    {
-      id: 12,
-      secretariaExecutiva: 'SEVIG',
-      coordenadoria: 'COVIG',
-      descricaoObjetivo: 'Observatóriode causas externas do estado do ceará',
-    },
   ];
 
   constructor(
@@ -145,8 +70,16 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
   }
 
   public buscarObjetivos(): void {
-    this.dadosTabela.data = this.listaObjetivosEstrategico;
-    this.dadosTabela.paginator = this.paginator;
+    this.objetivosService.listarObjetivoEstrategicos().subscribe({
+      next: (objetivos: Array<ObjetivosEstrategicos>) => {
+        this.listaObjetivosEstrategico = objetivos;
+        this.dadosTabela.data = objetivos;
+        this.dadosTabela.paginator = this.paginator;
+      },
+      error: () => {
+        this.toastr.error('Erro ao listar objetivos estratégicos', 'Erro!');
+      },
+    });
   }
 
   public aplicarFiltro(event: Event): void {

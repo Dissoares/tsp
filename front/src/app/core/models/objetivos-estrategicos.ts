@@ -2,7 +2,7 @@ export class ObjetivosEstrategicos {
   public id?: number;
   public secretariaExecutiva!: string;
   public coordenadoria!: string;
-  public descricaoObjetivo?: string;
+  public descricaoObjetivo!: string;
   public ativo?: boolean;
   
   constructor(init?: Partial<ObjetivosEstrategicos>) {
