@@ -11,7 +11,7 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Gepes WebApi")
+                        .title("TSP WebApi")
                         .version("1.0.0")
                         .description("Gestão estratégica de projetos secretariado"));
     }
