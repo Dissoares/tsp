@@ -2,6 +2,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Component, inject, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ObjetivosEstrategicosService } from '../../services';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -29,8 +30,10 @@ import { ToastrService } from 'ngx-toastr';
 export class DialogObjetivosEstrategicosComponent implements OnInit {
   @ViewChild(MatPaginator) private paginator!: MatPaginator;
 
-  public dadosTabela = new MatTableDataSource<any>([]);
+  private readonly objetivosService = inject(ObjetivosEstrategicosService);
   private readonly toastr = inject(ToastrService);
+
+  public dadosTabela = new MatTableDataSource<any>([]);
   public objetivosSelecionados = new Set<any>();
 
   public colunasTabela: Array<string> = [
@@ -123,6 +126,17 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
 
   public ngOnInit(): void {
     this.buscarObjetivos();
+    this.carregarObjetivosAdicionados();
+  }
+
+  public carregarObjetivosAdicionados(): void {
+    const itensJaSelecionados = this.objetivosService.selecionados;
+    itensJaSelecionados.forEach((item) => {
+      const itemCorrespondente = this.listaObjetivosEstrategico.find((obj) => obj.id === item.id);
+      if (itemCorrespondente) {
+        this.objetivosSelecionados.add(itemCorrespondente);
+      }
+    });
   }
 
   public ngAfterViewInit(): void {
@@ -153,6 +167,9 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
       return;
     }
     const selecionados = Array.from(this.objetivosSelecionados);
+    
+    this.objetivosService.adicionarSelecionados(selecionados);
+    
     this.dialogRef.close(selecionados);
   }
 
@@ -169,6 +186,6 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
   }
 
   public cancelar(): void {
-    this.dialogRef.close(true);
+    this.dialogRef.close();
   }
 }
