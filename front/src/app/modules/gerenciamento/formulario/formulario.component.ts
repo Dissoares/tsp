@@ -163,6 +163,7 @@ export class FormularioComponent implements OnInit {
   }
 
   public excluir(item: any): void {
-    this.dadosTabela.data = this.dadosTabela.data.filter((s) => s.id !== item);
+    this.dadosTabela.data = this.dadosTabela.data.filter((s) => s.id !== item.id);
+    this.toastr.info('Item excluído!', 'Aviso!');
   }
 }

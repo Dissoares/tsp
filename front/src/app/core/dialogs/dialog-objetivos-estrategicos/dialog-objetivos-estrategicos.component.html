@@ -45,9 +45,11 @@
             <th style="width: 15%; text-align: center" mat-header-cell *matHeaderCellDef>
               Selecionar objetivos
             </th>
-            <td mat-cell *matCellDef="let projeto">
-              <button mat-mini-fab color="primary" (click)="selecionarObjetivo(projeto)">
-                <mat-icon>add</mat-icon>
+            <td mat-cell *matCellDef="let projeto" >
+              <button mat-mini-fab color="primary" (click)="selecionarObjetivo(projeto)"  [class.selecionado]="isSelecionado(projeto)">
+                <mat-icon>
+                  {{ isSelecionado(projeto) ? 'check' : 'add' }}
+                </mat-icon>
               </button>
             </td>
           </ng-container>
@@ -65,9 +67,9 @@
   </mat-card-content>
 
   <mat-card-actions>
-
-
-    <button class="cancelar" mat-button (click)="cancelar()"><mat-icon>close</mat-icon>Cancelar</button>
+    <button class="cancelar" mat-button (click)="cancelar()">
+      <mat-icon>close</mat-icon>Cancelar
+    </button>
     <button class="adicionar" mat-button (click)="adicionar()">
       <mat-icon>add</mat-icon>Adicionar
     </button>
