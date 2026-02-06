@@ -32,6 +32,9 @@ public class Usuario {
 
     private Integer perfil;
 
+    @Column(name = "imagem_perfil")
+    private String imagemPerfil;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "criado_por", updatable = false)
     private Usuario criadoPor;

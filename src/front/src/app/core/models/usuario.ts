@@ -7,6 +7,7 @@ export class Usuario {
   public cpf?: string;
   public senha!: string;
   public perfil!: PerfilEnum;
+  public imagemPerfil?: string;
   public dataCriacao?: string;
   public ativo?: boolean;
 

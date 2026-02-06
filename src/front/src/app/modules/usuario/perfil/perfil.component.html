@@ -36,6 +36,58 @@
           <mat-icon matPrefix>calendar_month</mat-icon>
           <input matInput type="text" formControlName="dataCriacao" />
         </mat-form-field>
+
+        <div class="imagem-perfil-section field-12">
+          <mat-label class="section-title">Imagem de Perfil</mat-label>
+
+          <div class="imagem-container">
+            @if (visualizacaoImagem || linkImagem) {
+            <img [src]="visualizacaoImagem || linkImagem" alt="Imagem de perfil" class="imagem-preview" />
+            } @else {
+            <div class="sem-imagem-circle" (click)="fileInput.click()">
+              <mat-icon>add_a_photo</mat-icon>
+            </div>
+            }
+
+            @if (progressoUpload) {
+            <div class="upload-overlay">
+              <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+            </div>
+            }
+          </div>
+
+          <div class="imagem-actions">
+            <input type="file" #fileInput hidden accept="image/*" (change)="onFileSelected($event)" />
+
+            @if (!ehEdicao) {
+            <button mat-stroked-button type="button" (click)="editarDadosPerfil()">
+              <mat-icon>edit</mat-icon>
+              Editar Perfil
+            </button>
+            }
+
+            @if (ehEdicao || visualizacaoImagem || linkImagem) {
+            <button mat-stroked-button type="button" (click)="fileInput.click()" [disabled]="progressoUpload">
+              <mat-icon>upload</mat-icon>
+              {{ linkImagem ? 'Alterar Imagem' : 'Adicionar Imagem' }}
+            </button>
+
+            @if (visualizacaoImagem) {
+            <button mat-stroked-button type="button" (click)="cancelarUpload()" [disabled]="progressoUpload">
+              <mat-icon>cancel</mat-icon>
+              Cancelar
+            </button>
+            }
+
+            @if (linkImagem && !visualizacaoImagem) {
+            <button mat-stroked-button color="warn" type="button" (click)="removerImagem()" [disabled]="progressoUpload">
+              <mat-icon>delete</mat-icon>
+              Remover Imagem
+            </button>
+            }
+            }
+          </div>
+        </div>
         }
         @if (ehEdicao) {
         <mat-form-field appearance="outline" floatLabel="always" class="field-12">

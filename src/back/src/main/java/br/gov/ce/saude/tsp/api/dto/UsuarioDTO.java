@@ -7,6 +7,7 @@ public record UsuarioDTO(
         String nome,
         String email,
         Integer perfil,
+        String imagemPerfil,
         LocalDateTime dataCriacao,
         Boolean ativo
 ) {}

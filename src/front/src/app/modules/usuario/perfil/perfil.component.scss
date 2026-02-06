@@ -16,3 +16,113 @@ mat-card-title {
   align-items: center !important;
   gap: 5px;
 }
+
+.imagem-perfil-section {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+
+  .section-title {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .imagem-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    .imagem-preview {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .upload-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+    }
+  }
+
+  .sem-imagem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 2px dashed #ccc;
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: #999;
+      margin-bottom: 10px;
+    }
+
+    span {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+
+  .sem-imagem-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: 3px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 auto 15px auto;
+
+    &:hover {
+      background-color: #e8e8e8;
+      border-color: #999;
+    }
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: #999;
+    }
+  }
+
+  .imagem-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      min-width: 140px;
+      justify-content: center;
+    }
+  }
+}

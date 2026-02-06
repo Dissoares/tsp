@@ -69,6 +69,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
 
+              - column:
+                  name: imagem_perfil
+                  type: VARCHAR(500)
+
+
         - addForeignKeyConstraint:
             baseTableName: usuario
             baseColumnNames: criado_por

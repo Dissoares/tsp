@@ -26,3 +26,4 @@ databaseChangeLog:
   - include:
       file: db.changelog-migration-0005-criando-tabela-associacao-solicitacao-objetivo-estrategico-06-02-2026.yaml
       relativeToChangelogFile: true
+

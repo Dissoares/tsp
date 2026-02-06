@@ -69,4 +69,40 @@ export class UsuarioService {
 
     return this.http.put<Usuario>(urlEndpoint, {});
   }
+
+  public uploadImagemPerfil(usuarioId: number, file: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    return this.http.post<string>(
+      `${this.apiUrl}${this.endPointUrl}/upload-imagem-perfil/${usuarioId}`, 
+      formData
+    );
+  }
+
+  public atualizarImagemPerfil(usuarioId: number, file: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    return this.http.put<string>(
+      `${this.apiUrl}${this.endPointUrl}/atualizar-imagem-perfil/${usuarioId}`, 
+      formData
+    );
+  }
+
+  public removerImagemPerfil(usuarioId: number): Observable<string> {
+    return this.http.delete<string>(
+      `${this.apiUrl}${this.endPointUrl}/remover-imagem-perfil/${usuarioId}`
+    );
+  }
+
+  public buscarImagemPerfil(usuarioId: number): Observable<string> {
+    return this.http.get<string>(
+      `${this.apiUrl}${this.endPointUrl}/imagem-perfil/${usuarioId}`
+    );
+  }
+
+  public buscarUsuarioCompleto(usuarioId: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}${this.endPointUrl}/${usuarioId}`);
+  }
 }
