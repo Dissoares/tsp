@@ -8,6 +8,7 @@ import {
   DialogConfirmacaoService,
 } from '../../../core/services';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ObjetivosEstrategicos, SolicitacaoProjeto } from '../../../core/models';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { DialogObjetivosEstrategicosComponent } from '../../../core/dialogs';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -17,7 +18,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { SolicitacaoProjeto } from '../../../core/models';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -113,13 +113,11 @@ export class FormularioComponent implements OnInit {
   public enviar(): void {
     const solicitacao: SolicitacaoProjeto = this.formulario.getRawValue();
 
+    solicitacao.objetivosEstrategicosSesa = this.dadosTabela.data;
+
     if (this.verificarCamposValidos(solicitacao)) {
       this.solicitacaoService.salvar(solicitacao).subscribe({
-        next: (salva: SolicitacaoProjeto) => {
-          salva && salva
-            ? this.toastr.success('Solicitação salva com sucesso!.', 'Sucesso!')
-            : null;
-        },
+        next: () => this.toastr.success('Solicitação salva com sucesso!', 'Sucesso!'),
         error: (erro) => {
           this.toastr.error('Não foi possível salvar a solicitação.', 'Erro!');
           console.log(erro);
@@ -168,7 +166,7 @@ export class FormularioComponent implements OnInit {
     return true;
   }
 
-  public excluir(item: any): void {
+  public excluir(item: ObjetivosEstrategicos): void {
     this.confirmacaoDialog
       .openDialog({
         titulo: 'Confirmação!',
@@ -179,11 +177,11 @@ export class FormularioComponent implements OnInit {
       .subscribe((resultado) => {
         if (!resultado) return;
         this.dadosTabela.data = this.dadosTabela.data.filter(
-          (objetivos: any) => objetivos.id !== item.id,
+          (objetivos: ObjetivosEstrategicos) => objetivos.id !== item.id,
         );
 
         const itensAtualizados = this.objetivosService.selecionados.filter(
-          (objetivos: any) => objetivos.id !== item.id,
+          (objetivos: ObjetivosEstrategicos) => objetivos.id !== item.id,
         );
         this.objetivosService.adicionarSelecionados(itensAtualizados);
 

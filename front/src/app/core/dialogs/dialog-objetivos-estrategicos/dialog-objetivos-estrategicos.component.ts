@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { ObjetivosEstrategicos } from '../../models';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
@@ -33,8 +34,8 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
   private readonly objetivosService = inject(ObjetivosEstrategicosService);
   private readonly toastr = inject(ToastrService);
 
-  public dadosTabela = new MatTableDataSource<any>([]);
-  public objetivosSelecionados = new Set<any>();
+  public dadosTabela = new MatTableDataSource<ObjetivosEstrategicos>([]);
+  public objetivosSelecionados = new Set<ObjetivosEstrategicos>();
 
   public colunasTabela: Array<string> = [
     'secretariaExecutiva',
@@ -48,74 +49,74 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
       id: 1,
       secretariaExecutiva: 'SEADE',
       coordenadoria: 'SEVIG',
-      objetivo: 'Implementação da carteira de serviços das regiões de saúde',
+      descricaoObjetivo: 'Implementação da carteira de serviços das regiões de saúde',
     },
     {
       id: 2,
       secretariaExecutiva: 'SEADE',
       coordenadoria: 'SESA',
-      objetivo: 'Incorporação dos serviços de alta complexidade nos hospitais regionais',
+      descricaoObjetivo: 'Incorporação dos serviços de alta complexidade nos hospitais regionais',
     },
     {
       id: 3,
       secretariaExecutiva: 'SEVIG',
       coordenadoria: 'COVIS',
-      objetivo: 'Gestão sanitária da segurança do paciente en serviços de saúde pública',
+      descricaoObjetivo: 'Gestão sanitária da segurança do paciente en serviços de saúde pública',
     },
     {
       id: 4,
       secretariaExecutiva: 'SEVIG',
       coordenadoria: 'COVIG',
-      objetivo: 'Observatóriode causas externas do estado do ceará',
+      descricaoObjetivo: 'Observatóriode causas externas do estado do ceará',
     },
     {
       id: 5,
       secretariaExecutiva: 'SPOS',
       coordenadoria: 'COPIS',
-      objetivo: 'Programa cuidar melhor',
+      descricaoObjetivo: 'Programa cuidar melhor',
     },
     {
       id: 6,
       secretariaExecutiva: 'SPOS',
       coordenadoria: 'COFAP',
-      objetivo:
+      descricaoObjetivo:
         'Apoio à implantação e implementação dos serviços de farmácia clínica nos hospitais da rede sesa',
     },
     {
       id: 7,
       secretariaExecutiva: 'SESA',
       coordenadoria: 'COLOG',
-      objetivo: 'Otimizar logística de insumos',
+      descricaoObjetivo: 'Otimizar logística de insumos',
     },
     {
       id: 8,
       secretariaExecutiva: 'SESA',
       coordenadoria: 'COPLAN',
-      objetivo: 'Planejar metas estratégicas anuais',
+      descricaoObjetivo: 'Planejar metas estratégicas anuais',
     },
     {
       id: 9,
       secretariaExecutiva: 'SEADE',
       coordenadoria: '',
-      objetivo: 'Implementação da carteira de serviços das regiões de saúde',
+      descricaoObjetivo: 'Implementação da carteira de serviços das regiões de saúde',
     },
     {
       id: 10,
       secretariaExecutiva: 'SEADE',
       coordenadoria: '',
-      objetivo: 'Incorporação dos serviços de alta complexidade nos hospitais regionais',
+      descricaoObjetivo: 'Incorporação dos serviços de alta complexidade nos hospitais regionais',
     },
     {
       id: 11,
       secretariaExecutiva: 'SEVIG',
       coordenadoria: 'COVIS',
-      objetivo: 'Gestão sanitária da segurança do paciente en serviços de saúde pública',
+      descricaoObjetivo: 'Gestão sanitária da segurança do paciente en serviços de saúde pública',
     },
     {
       id: 12,
       secretariaExecutiva: 'SEVIG',
       coordenadoria: 'COVIG',
-      objetivo: 'Observatóriode causas externas do estado do ceará',
+      descricaoObjetivo: 'Observatóriode causas externas do estado do ceará',
     },
   ];
 
@@ -167,13 +168,13 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
       return;
     }
     const selecionados = Array.from(this.objetivosSelecionados);
-    
+
     this.objetivosService.adicionarSelecionados(selecionados);
-    
+
     this.dialogRef.close(selecionados);
   }
 
-  public selecionarObjetivo(item: any): void {
+  public selecionarObjetivo(item: ObjetivosEstrategicos): void {
     if (this.objetivosSelecionados.has(item)) {
       this.objetivosSelecionados.delete(item);
     } else {
@@ -181,7 +182,7 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
     }
   }
 
-  public isSelecionado(item: any): boolean {
+  public isSelecionado(item: ObjetivosEstrategicos): boolean {
     return this.objetivosSelecionados.has(item);
   }
 

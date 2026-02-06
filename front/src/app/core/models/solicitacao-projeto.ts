@@ -1,3 +1,4 @@
+import { ObjetivosEstrategicos } from './objetivos-estrategicos';
 import { PerfilEnum } from '../enums';
 
 export class SolicitacaoProjeto {
@@ -7,7 +8,7 @@ export class SolicitacaoProjeto {
   public responsavelProjeto?: string;
   public motivacaoProjeto?: string;
   public objetivosEspecificosProjeto!: string;
-  public objetivosEstrategicosSesa!: string;
+  public objetivosEstrategicosSesa!: Array<ObjetivosEstrategicos>;
   public premissas?: string;
   public riscos?: string;
   public restricoes?: string;
