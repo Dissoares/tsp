@@ -52,7 +52,6 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
 
   public ngOnInit(): void {
     this.buscarObjetivos();
-    this.carregarObjetivosAdicionados();
   }
 
   public carregarObjetivosAdicionados(): void {
@@ -75,6 +74,8 @@ export class DialogObjetivosEstrategicosComponent implements OnInit {
         this.listaObjetivosEstrategico = objetivos;
         this.dadosTabela.data = objetivos;
         this.dadosTabela.paginator = this.paginator;
+
+        this.carregarObjetivosAdicionados();
       },
       error: () => {
         this.toastr.error('Erro ao listar objetivos estratégicos', 'Erro!');
