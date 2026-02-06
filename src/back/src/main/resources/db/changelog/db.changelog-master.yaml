@@ -1,9 +1,5 @@
 databaseChangeLog:
   - include:
-      file: db.changelog-migration-0000-limpando-tabelas-existentes-06-02-2026.yaml
-      relativeToChangelogFile: true
-
-  - include:
       file: db.changelog-migration-0001-criando-tabela-usuario-06-02-2026.yaml
       relativeToChangelogFile: true
 
