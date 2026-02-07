@@ -1,0 +1,142 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0003-1-inserindo-dados-objetivos-estrategicos-parte1
+      author: diego.soares
+      changes:
+        - insert:
+            tableName: objetivos_estrategicos
+            columns:
+              - column:
+                  name: secretaria_executiva
+                  value: SEADE
+
+              - column:
+                  name: coordenadoria
+                  value: SEVIG
+
+              - column:
+                  name: descricao_objetivo
+                  value: Implementação da carteira de serviços das regiões de saúde
+
+              - column:
+                  name: CRIADO_POR
+                  valueNumeric: 1
+
+              - column:
+                  name: DATA_CRIACAO
+                  valueDate: 2025-02-06T00:00:00
+
+        - insert:
+            tableName: objetivos_estrategicos
+            columns:
+              - column:
+                  name: secretaria_executiva
+                  value: SEADE
+
+              - column:
+                  name: coordenadoria
+                  value: SESA
+
+              - column:
+                  name: descricao_objetivo
+                  value: Incorporação dos serviços de alta complexidade nos hospitais regionais
+
+              - column:
+                  name: CRIADO_POR
+                  valueNumeric: 1
+
+              - column:
+                  name: DATA_CRIACAO
+                  valueDate: 2025-02-06T00:00:00
+
+        - insert:
+            tableName: objetivos_estrategicos
+            columns:
+              - column:
+                  name: secretaria_executiva
+                  value: SEVIG
+
+              - column:
+                  name: coordenadoria
+                  value: COVIS
+
+              - column:
+                  name: descricao_objetivo
+                  value: Gestão sanitária da segurança do paciente en serviços de saúde pública
+
+              - column:
+                  name: CRIADO_POR
+                  valueNumeric: 1
+
+              - column:
+                  name: DATA_CRIACAO
+                  valueDate: 2025-02-06T00:00:00
+
+        - insert:
+            tableName: objetivos_estrategicos
+            columns:
+              - column:
+                  name: secretaria_executiva
+                  value: SEVIG
+
+              - column:
+                  name: coordenadoria
+                  value: COVIG
+
+              - column:
+                  name: descricao_objetivo
+                  value: Observatóriode causas externas do estado do ceará
+
+              - column:
+                  name: CRIADO_POR
+                  valueNumeric: 1
+
+              - column:
+                  name: DATA_CRIACAO
+                  valueDate: 2025-02-06T00:00:00
+
+        - insert:
+            tableName: objetivos_estrategicos
+            columns:
+              - column:
+                  name: secretaria_executiva
+                  value: SPOS
+
+              - column:
+                  name: coordenadoria
+                  value: COPIS
+
+              - column:
+                  name: descricao_objetivo
+                  value: Programa cuidar melhor
+
+              - column:
+                  name: CRIADO_POR
+                  valueNumeric: 1
+
+              - column:
+                  name: DATA_CRIACAO
+                  valueDate: 2025-02-06T00:00:00
+
+        - insert:
+            tableName: objetivos_estrategicos
+            columns:
+              - column:
+                  name: secretaria_executiva
+                  value: SPOS
+
+              - column:
+                  name: coordenadoria
+                  value: COFAP
+
+              - column:
+                  name: descricao_objetivo
+                  value: Apoio à implantação e implementação dos serviços de farmácia clínica nos hospitais da rede sesa
+
+              - column:
+                  name: CRIADO_POR
+                  valueNumeric: 1
+
+              - column:
+                  name: DATA_CRIACAO
+                  valueDate: 2025-02-06T00:00:00

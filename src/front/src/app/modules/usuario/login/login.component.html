@@ -1,0 +1,125 @@
+<div class="auth-container">
+  <div class="auth-info">
+    <div class="info-content">
+      <div class="logo">
+        <mat-icon>account_balance</mat-icon>
+        <h1>TSP</h1>
+      </div>
+      <h2>Gestão de Projetos Estratégicos da SESA</h2>
+      <p class="description">
+        Sistema integrado para gestão centralizada de projetos estratégicos da Secretaria de Saúde
+        do Estado, garantindo eficiência, transparência e alinhamento com as metas institucionais.
+      </p>
+      <div class="features">
+        <div class="feature-item">
+          <mat-icon>hub</mat-icon>
+          <span>Gestão Centralizada</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>account_tree</mat-icon>
+          <span>Fluxo Institucional</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>visibility</mat-icon>
+          <span>Acompanhamento e Transparência</span>
+        </div>
+      </div>
+      <div class="footer-logos">
+        <div class="logo-item">
+          <span class="logo-text">Saúde Digital</span>
+        </div>
+        <div class="logo-item">
+          <span class="logo-text">CEARÁ</span>
+          <span class="logo-subtitle">GOVERNO DO ESTADO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <mat-card>
+      <div class="login-header">
+        <h1>Fazer Login</h1>
+        <p>Acessar o TSP</p>
+      </div>
+
+      <form [formGroup]="formulario" (ngSubmit)="ehCadastro ? cadastrar() : login()">
+        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
+          <mat-label>Nome</mat-label>
+          <mat-icon matPrefix>badge</mat-icon>
+          <input matInput formControlName="nome" placeholder="Digite seu nome" />
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('nome')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>E-mail</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput type="email" formControlName="email" placeholder="Digite seu e-mail" />
+          <mat-hint>Use seu institucional cadastrado</mat-hint>
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('email')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>Senha</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput [type]="mostrarSenha ? 'text' : 'password'" formControlName="senha"
+            placeholder="Digite sua senha" />
+          <button mat-icon-button matSuffix (click)="mostrarSenha = !mostrarSenha" type="button">
+            <mat-icon>{{ mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('senha')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
+          <mat-label>Repita Senha</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput [type]="mostrarConfirmarSenha ? 'text' : 'password'" formControlName="confirmarSenha"
+            placeholder="Digite sua senha novamente" />
+          <button mat-icon-button matSuffix (click)="mostrarConfirmarSenha = !mostrarConfirmarSenha" type="button">
+            <mat-icon>{{ mostrarConfirmarSenha ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('confirmarSenha')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login-field" *ngIf="ehCadastro">
+          <mat-label>Perfil</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-select formControlName="perfil">
+            <mat-option *ngFor="let perfil of listaPerfilEnum" [value]="perfil.id">
+              {{ perfil.descricao }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('perfil')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="form-options">
+          <mat-checkbox class="remember-checkbox">Lembrar de mim</mat-checkbox>
+          <a href="#" class="forgot-password">Esqueci minha senha</a>
+        </div>
+
+        <button type="submit" mat-flat-button class="login-button" [disabled]="formulario.invalid">
+          Entrar
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <p>Uso exclusivo de servidores da SESA</p>
+        <p class="cadastro-link">
+          Ainda não tem conta? 
+          <a routerLink="/cadastro">Cadastre-se aqui</a>
+        </p>
+      </div>
+    </mat-card>
+  </div>
+</div>

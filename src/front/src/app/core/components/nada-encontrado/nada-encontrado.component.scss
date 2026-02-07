@@ -1,0 +1,31 @@
+.nada-encontrado-card {
+  width: 100%;
+  background-color: #e8e8e8 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+  font-weight: 600;
+  color: #0f5b50;
+  box-shadow: none !important;
+  border: solid 1px #c4c4c4;
+
+  .conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icone {
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 12px;
+    }
+
+    .mensagem {
+      font-size: 18px;
+      font-weight: 500;
+      text-align: center;
+    }
+  }
+}

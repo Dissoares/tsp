@@ -1,0 +1,253 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: 'Poppins, sans-serif',
+      density: 0,
+    )
+  );
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+mat-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px;
+}
+
+.salvar,
+.cancelar {
+  width: 120px;
+}
+
+.salvar {
+  background-color: #0e534e !important;
+  color: #fff !important;
+}
+
+.cancelar {
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: #0e534e !important;
+  border: solid 1px #0e534e !important;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.field-1 {
+  grid-column: span 1;
+  margin: 0px;
+  width: 100%;
+}
+
+.field-2 {
+  grid-column: span 2;
+  margin: 0px;
+  width: 100%;
+}
+
+.field-3 {
+  grid-column: span 3;
+  margin: 0px;
+  width: 100%;
+}
+
+.field-4 {
+  grid-column: span 4;
+  margin: 0px;
+  width: 100%;
+}
+
+.field-5 {
+  grid-column: span 5;
+  margin: 0px;
+  width: 100%;
+}
+
+.field-6 {
+  grid-column: span 6;
+  margin: 0px;
+  width: 100%;
+}
+
+.field-12 {
+  grid-column: span 12;
+  margin: 0px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .field-1,
+  .field-2,
+  .field-3,
+  .field-4,
+  .field-5,
+  .field-6,
+  .field-7,
+  .field-8,
+  .field-9,
+  .field-10,
+  .field-11,
+  .field-12 {
+    grid-column: span 12;
+    margin: 0px;
+    width: 100%;
+  }
+}
+
+.campo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#titulo-campo {
+  font-weight: 600;
+  color: #1f6f63;
+  margin-top: 20px;
+}
+
+.campo-container input {
+  border: none;
+  border-bottom: 1px solid #1f6f63;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+  padding: 15px;
+  height: 25px !important;
+}
+
+.campo-container input:focus,
+.campo-container textarea:focus {
+  border-bottom: 3px solid #1f6f63;
+}
+
+.campo-container input::placeholder {
+  font-size: 15px;
+  color: #9e9e9e;
+  opacity: 1;
+}
+
+.campo-container .mat-mdc-input-element,
+.campo-container input,
+.campo-container textarea,
+.campo-container input::placeholder {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.campo-container input {
+  font-size: 14px;
+  padding: 10px;
+  height: auto !important;
+}
+
+.campo-container {
+  gap: 4px;
+}
+
+@media (max-width: 768px) {
+  #titulo-campo {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+}
+
+textarea {
+  margin: 10px !important;
+  padding: 10px;
+  border: none !important;
+  border-bottom: 1px solid #0f5b50 !important;
+}
+
+textarea:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-bottom: 3px solid #0f5b50 !important;
+}
+
+mat-card-header,
+mat-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: 20px;
+  color: #0f5b50;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+::ng-deep app-erro {
+  padding-left: 5px !important;
+  font-size: 12px !important;
+  margin-top: 0px !important;
+  color: rgb(109, 0, 0) !important;
+}
+
+.spaco-menu {
+  flex: 1;
+}
+
+.fundo-modal {
+  background: rgba(0, 0, 0, 0.322) !important;
+  transition: all 1s ease !important;
+}
+
+.toast-info {
+  background-color: #df8805 !important;
+  color: #fff !important;
+}
+
+.mat-mdc-mini-fab {
+  box-shadow: none !important;
+  background-color: #e6e6e6 !important;
+  margin: 5px !important;
+  color: #0f5b50 !important;
+}
+
+.mat-mdc-mini-fab:hover {
+  box-shadow: none !important;
+  background-color: #df8805 !important;
+  margin: 5px !important;
+  color: #ffffff !important;
+}
+
+.mat-mdc-header-row {
+  background: #0e534e !important;
+  color: #ffffff !important;
+  height: 55px !important;
+  text-transform: uppercase;
+}
+
+.mat-mdc-row:hover {
+  cursor: pointer;
+}
+
+.linha-destacada {
+  background: #ffffff !important;
+}
+
+.mat-mdc-paginator-container {
+  justify-content: center !important;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #9e9e9e !important;
+  border-top: 1px solid #9e9e9e !important;
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.12);
+}

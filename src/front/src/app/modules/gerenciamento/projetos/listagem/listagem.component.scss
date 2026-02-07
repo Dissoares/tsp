@@ -1,0 +1,38 @@
+mat-toolbar {
+  display: flex !important;
+  justify-content: space-between !important;
+  background: #f5f3f3;
+}
+
+app-filtros {
+  border-radius: 16px !important;
+}
+
+mat-card-content,
+table {
+  border-radius: 16px !important;
+}
+
+mat-card-subtitle {
+  font-size: 14px;
+  color: #717182;
+}
+
+.container-gerenciar {
+  background-color: #fff !important;
+  margin: 30px;
+  border-radius: 16px;
+}
+
+.add {
+  width: 180px;
+  background-color: #0e534e !important;
+  color: #fff !important;
+  margin: 30px;
+}
+
+.tabela {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 30px !important;
+}

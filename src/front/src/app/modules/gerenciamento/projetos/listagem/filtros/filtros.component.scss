@@ -1,0 +1,27 @@
+mat-card-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+mat-card-content,
+mat-card {
+  box-shadow: none !important;
+}
+
+
+::ng-deep .mat-mdc-select,
+div.mat-mdc-select-panel {
+  border-bottom: 1px solid #1f6f63;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+  height: 25px !important;
+}
+
+::ng-deep .mat-mdc-option:focus.mdc-list-item,
+.mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+  background-color: #0f5b50 !important;
+  color: #fff !important;
+}

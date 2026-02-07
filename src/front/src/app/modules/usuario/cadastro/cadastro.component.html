@@ -1,0 +1,130 @@
+<div class="auth-container">
+  <div class="auth-info">
+    <div class="info-content">
+      <div class="logo">
+        <mat-icon>account_balance</mat-icon>
+        <h1>TSP</h1>
+      </div>
+      <h2>Crie sua conta</h2>
+      <p class="description">
+        Faça parte do sistema integrado para gestão centralizada de projetos estratégicos da Secretaria de Saúde
+        do Estado e contribua para um futuro mais eficiente e transparente.
+      </p>
+      <div class="features">
+        <div class="feature-item">
+          <mat-icon>person_add</mat-icon>
+          <span>Cadastro Simplificado</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>security</mat-icon>
+          <span>Acesso Seguro</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Perfis Personalizados</span>
+        </div>
+      </div>
+      <div class="footer-logos">
+        <div class="logo-item">
+          <span class="logo-text">Saúde Digital</span>
+        </div>
+        <div class="logo-item">
+          <span class="logo-text">CEARÁ</span>
+          <span class="logo-subtitle">GOVERNO DO ESTADO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <mat-card>
+      <div class="cadastro-header">
+        <h1>Criar Conta</h1>
+        <p>Cadastre-se no TSP</p>
+      </div>
+
+      <form [formGroup]="formulario" (ngSubmit)="cadastrar()">
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>Nome Completo</mat-label>
+          <mat-icon matPrefix>badge</mat-icon>
+          <input matInput formControlName="nome" placeholder="Digite seu nome completo" />
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('nome')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>E-mail Institucional</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput type="email" formControlName="email" placeholder="Digite seu e-mail institucional" />
+          <mat-hint>Use seu e-mail institucional da SESA</mat-hint>
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('email')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>Senha</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput [type]="mostrarSenha ? 'text' : 'password'" formControlName="senha"
+            placeholder="Crie uma senha segura" />
+          <button mat-icon-button matSuffix (click)="mostrarSenha = !mostrarSenha" type="button">
+            <mat-icon>{{ mostrarSenha ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-hint>Mínimo 6 caracteres</mat-hint>
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('senha')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>Confirmar Senha</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput [type]="mostrarConfirmarSenha ? 'text' : 'password'" formControlName="confirmarSenha"
+            placeholder="Digite sua senha novamente" />
+          <button mat-icon-button matSuffix (click)="mostrarConfirmarSenha = !mostrarConfirmarSenha" type="button">
+            <mat-icon>{{ mostrarConfirmarSenha ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('confirmarSenha')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="login-field">
+          <mat-label>Perfil de Acesso</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-select formControlName="perfil">
+            <mat-option value="">Selecione um perfil</mat-option>
+            <mat-option *ngFor="let perfil of listaPerfilEnum" [value]="perfil.id">
+              {{ perfil.descricao }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Selecione seu perfil de acesso no sistema</mat-hint>
+          <mat-error>
+            <app-erro [dadosCampo]="formulario.get('perfil')"></app-erro>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="form-options">
+          <mat-checkbox class="terms-checkbox">
+            Li e concordo com os termos de uso e política de privacidade
+          </mat-checkbox>
+        </div>
+
+        <button type="submit" mat-flat-button class="cadastro-button" [disabled]="formulario.invalid">
+          Criar Conta
+          <mat-icon>person_add</mat-icon>
+        </button>
+
+        <button type="button" mat-stroke-button class="voltar-button" (click)="voltarParaLogin()">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar para o Login
+        </button>
+      </form>
+
+      <div class="cadastro-footer">
+        <p>Ao se cadastrar, você concorda com as políticas da SESA</p>
+      </div>
+    </mat-card>
+  </div>
+</div>

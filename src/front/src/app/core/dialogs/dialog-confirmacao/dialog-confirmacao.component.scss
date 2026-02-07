@@ -1,0 +1,74 @@
+::ng-deep .cdk-overlay-backdrop {
+  background: rgba(0, 0, 0, 0.322) !important;
+  transition: all 1s ease !important;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+mat-card-title {
+  font-weight: 600;
+  margin-bottom: 10px !important;
+}
+
+mat-card-subtitle {
+  padding: 5px;
+  text-align: center;
+}
+
+.icone-aviso {
+  margin-top: 5px;
+  width: 60px;
+  height: 60px;
+  font-size: 60px;
+  color: #0e534e;
+}
+
+.alerta {
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+  color: #730000;
+}
+
+.btn-fechar {
+  color: #0e534e;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.acoes {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 20px;
+  padding: 12px 0;
+  background-color: rgba(210, 224, 228, 0.822);
+}

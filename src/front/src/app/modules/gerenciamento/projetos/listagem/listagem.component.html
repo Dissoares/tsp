@@ -1,0 +1,89 @@
+<div style="background-color: #f6f6f6 !important">
+  <mat-toolbar>
+    <mat-card-header style="margin: 10px">
+      <mat-card-title>
+        <h2>Meus projetos</h2>
+      </mat-card-title>
+      <mat-card-subtitle>Gerencie suas propostas de projeto</mat-card-subtitle>
+    </mat-card-header>
+
+    <button class="add" mat-button (click)="novoProjeto()"><mat-icon>add</mat-icon>Novo projeto</button>
+  </mat-toolbar>
+
+  <mat-card style="height: 100vh">
+    <mat-card-content>
+      <div class="container-gerenciar">
+        <app-filtros (filtro)="filtrar($event)"></app-filtros>
+
+        <div class="tabela">
+          <table mat-table [dataSource]="dadosTabela">
+            <ng-container matColumnDef="periodoEnvio">
+              <th style="text-align: center; width: 5%" mat-header-cell *matHeaderCellDef>
+                DATA SUBMISSÃO
+              </th>
+              <td mat-cell *matCellDef="let projeto">
+                {{ projeto.dataCriacao | date : "dd/MM/yyyy hh:mm" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tituloProjeto">
+              <th style="width: 15%" mat-header-cell *matHeaderCellDef>PROJETO</th>
+              <td mat-cell *matCellDef="let projeto">
+                {{ projeto.tituloProjeto }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="responsavelProjeto">
+              <th style="width: 10%" mat-header-cell *matHeaderCellDef>ÁREA DEMANDANTE</th>
+              <td mat-cell *matCellDef="let projeto">
+                {{ projeto.responsavelProjeto }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="statusProjeto">
+              <th style="width: 5%" mat-header-cell *matHeaderCellDef>PRIORIDADE</th>
+              <td mat-cell *matCellDef="let projeto">
+                {{ projeto.prioridade }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="prioridade">
+              <th style="width: 5%" mat-header-cell *matHeaderCellDef>STATUS</th>
+              <td mat-cell *matCellDef="let projeto">
+                {{ projeto.statusProjeto }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="estimativaTempo">
+              <th style="width: 10%" mat-header-cell *matHeaderCellDef>PRAZO</th>
+              <td mat-cell *matCellDef="let projeto">
+                {{ projeto.estimativaTempo }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acoes">
+              <th style="width: 5%; text-align: center" mat-header-cell *matHeaderCellDef>
+                AÇÕES
+              </th>
+              <td mat-cell *matCellDef="let projeto">
+                <button mat-mini-fab color="primary" (click)="editar(projeto)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn" (click)="visualizar(projeto)">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
+            <tr mat-row *matRowDef="let row; let i = index; columns: colunasTabela"
+              [ngClass]="{ 'linha-destacada': i % 2 === 0 }"></tr>
+          </table>
+
+          <mat-paginator [length]="dadosTabela.data.length" [pageSize]="7" [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

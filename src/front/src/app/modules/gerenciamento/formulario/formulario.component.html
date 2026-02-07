@@ -1,0 +1,339 @@
+<div class="container-stepper">
+  <div class="stepper">
+    <div class="step" [class.active]="stepper.selectedIndex === 0" [class.done]="stepper.selectedIndex > 0">
+      <span class="circulo">1</span>
+      <small>Identificação</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 1" [class.done]="stepper.selectedIndex > 1">
+      <span class="circulo">2</span>
+      <small>Objetivos</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 2" [class.done]="stepper.selectedIndex > 2">
+      <span class="circulo">3</span>
+      <small>Premissas</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 3" [class.done]="stepper.selectedIndex > 3">
+      <span class="circulo">4</span>
+      <small>Riscos e Restrições</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 4" [class.done]="stepper.selectedIndex > 4">
+      <span class="circulo">5</span>
+      <small>Aceitação do Secretário</small>
+    </div>
+    <div class="linha"></div>
+    <div class="step" [class.active]="stepper.selectedIndex === 5" [class.done]="stepper.selectedIndex > 5">
+      <span class="circulo">6</span>
+      <small>Análise de viabilidade</small>
+    </div>
+  </div>
+</div>
+
+<mat-stepper linear #stepper class="custom-stepper">
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Identificação</ng-template>
+
+          <div class="field-6 campo-container">
+            <label id="titulo-campo">Título do projeto*</label>
+            <input matInput formControlName="tituloProjeto" placeholder="Informe o título do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('tituloProjeto')"> </app-erro>
+            </mat-error>
+          </div>
+
+          <div class="field-6 campo-container">
+            <label id="titulo-campo">Descrição do projeto*</label>
+            <input matInput formControlName="descricaoProjeto" placeholder="Descrição do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('descricaoProjeto')"> </app-erro>
+            </mat-error>
+          </div>
+
+          <div class="field-6 campo-container">
+            <label id="titulo-campo">Responsável área solicitante*</label>
+            <input matInput formControlName="responsavelProjeto" placeholder="Nome completo" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('responsavelProjeto')"> </app-erro>
+            </mat-error>
+          </div>
+
+          <div class="field-6 campo-container">
+            <label id="titulo-campo">Motivação*</label>
+            <input matInput formControlName="motivacaoProjeto" placeholder="Informe a motivação do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('motivacaoProjeto')"> </app-erro>
+            </mat-error>
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button mat-button></button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+  </mat-step>
+
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Objetivos</ng-template>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Objetivos específicos do projeto*<mat-icon
+                matTooltip="Descreva os objetivos do projeto." matTooltipPosition="right" class="icone-informacao">
+                help
+              </mat-icon>
+            </label>
+
+            <textarea matInput formControlName="objetivosEspecificosProjeto"
+              placeholder="Descreva os objetivos do projeto" maxlength="1200" rows="6"></textarea>
+
+            <div class="tabela">
+              <mat-card-header>
+                <h2>
+                  Objetivos estratégicos da Sesa
+                  <mat-icon matTooltip="Selecione quais objetivos estratégicos se encaixam no seu projeto "
+                    matTooltipPosition="right" class="icone-informacao">
+                    help
+                  </mat-icon>
+                </h2>
+
+                <span class="spaco-menu"></span>
+                <button class="salvar" mat-button (click)="adicionarObjetivosEstrategicos()">
+                  <mat-icon>add</mat-icon>Adicionar
+                </button>
+              </mat-card-header>
+
+              @if (!dadosTabela.data.length) {
+              <app-nada-encontrado mensagem="Nenhum objetivo adicionado." icone="info"></app-nada-encontrado>
+              } @else {
+              <table mat-table [dataSource]="dadosTabela">
+                <ng-container matColumnDef="secretariaExecutiva">
+                  <th style="text-align: center; width: 15%" mat-header-cell *matHeaderCellDef>
+                    SECRETARIA EXECUTIVA
+                  </th>
+                  <td mat-cell *matCellDef="let projeto">
+                    {{ projeto.secretariaExecutiva }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="coordenadoria">
+                  <th style="width: 15%" mat-header-cell *matHeaderCellDef>COORDENADORIA</th>
+                  <td mat-cell *matCellDef="let projeto">
+                    {{ projeto.coordenadoria }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="objetivo">
+                  <th style="width: 55%" mat-header-cell *matHeaderCellDef>OBJETIVO</th>
+                  <td mat-cell *matCellDef="let projeto">
+                    {{ projeto.descricaoObjetivo }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acoes">
+                  <th style="width: 15%; text-align: center" mat-header-cell *matHeaderCellDef>
+                    AÇÕES
+                  </th>
+                  <td mat-cell *matCellDef="let projeto">
+                    <button mat-mini-fab color="primary" (click)="excluir(projeto)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
+                <tr mat-row *matRowDef="let row; let i = index; columns: colunasTabela"
+                  [ngClass]="{ 'linha-destacada': i % 2 === 0 }"></tr>
+              </table>
+
+              <mat-paginator [length]="dadosTabela.data.length" [pageSize]="10" [pageSizeOptions]="[10]"
+                [showFirstLastButtons]="true">
+              </mat-paginator>
+              }
+            </div>
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+  </mat-step>
+
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Premissas</ng-template>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Premissas*</label>
+            <textarea matInput formControlName="premissas" maxlength="1200" rows="6"></textarea>
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('premissas')"> </app-erro>
+            </mat-error>
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+  </mat-step>
+
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Riscos e Restrições</ng-template>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Riscos*</label>
+            <input matInput formControlName="riscos" placeholder="Informe os riscos" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('riscos')"> </app-erro>
+            </mat-error>
+          </div>
+
+          <div class="field-12 campo-container">
+            <label id="titulo-campo">Restrições*</label>
+            <input matInput formControlName="restricoes" placeholder="Informe as restrições" />
+
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('restricoes')"> </app-erro>
+            </mat-error>
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+  </mat-step>
+
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Aceitação do Secretário</ng-template>
+
+          <div class="field-12 campo-container" style="width: 98% !important">
+            <label id="titulo-campo">Aprovação*</label>
+
+            <mat-select formControlName="aprovacao" placeholder="Selecione">
+              <mat-option *ngFor="let resposta of respostaEnum" [value]="resposta.id">
+                {{ resposta.descricao }}
+              </mat-option>
+            </mat-select>
+
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('aprovacao')"> </app-erro>
+            </mat-error>
+          </div>
+        </form>
+
+        <mat-card-footer>
+          <button class="cancelar" mat-button (click)="voltar(stepper)">
+            <mat-icon>arrow_back</mat-icon>Voltar
+          </button>
+          <button class="salvar" mat-button (click)="avancar(stepper)">
+            <mat-icon>arrow_forward</mat-icon>Avançar
+          </button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+  </mat-step>
+
+  <mat-step [stepControl]="formulario">
+    <mat-card>
+      <mat-card-content>
+        <div class="secao-informcativa">
+          <div class="icone">
+            <mat-icon>check_circle_outline</mat-icon>
+          </div>
+
+          <div class="textos">
+            <h3>Viabilidade</h3>
+            <small>Avalie o status do projeto</small>
+          </div>
+        </div>
+
+        <form [formGroup]="formulario" class="container">
+          <ng-template matStepLabel>Análise de viabilidade</ng-template>
+          <div class="field-4 campo-container">
+            <label id="titulo-campo">Este projeto é viavél?*</label>
+
+            <mat-select formControlName="projetoViavel" placeholder="Selecione" style="width: 96% !important">
+              <mat-option *ngFor="let resposta of respostaEnum" [value]="resposta.id">
+                {{ resposta.descricao }}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('projetoViavel')"> </app-erro>
+            </mat-error>
+          </div>
+
+          <div class="field-4 campo-container">
+            <label id="titulo-campo">Estimativa de tempo*</label>
+            <input matInput formControlName="estimativaTempo" placeholder="Informe as estimativa de tempo do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('estimativaTempo')"> </app-erro>
+            </mat-error>
+          </div>
+
+          <div class="field-4 campo-container">
+            <label id="titulo-campo">Estimativa de custo*</label>
+            <input matInput formControlName="estimativaCusto" placeholder="Informe as estimativa de custo do projeto" />
+            <mat-error>
+              <app-erro [dadosCampo]="formulario.get('estimativaCusto')"> </app-erro>
+            </mat-error>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="barra-enviar">
+      <label id="titulo-campo">Preencha todas as informações necessárias</label>
+      <div>
+        <button class="cancelar" mat-button (click)="voltar(stepper)">
+          <mat-icon>arrow_back</mat-icon>Voltar
+        </button>
+        <button class="cancelar" mat-button (click)="cancelar()">
+          <mat-icon>arrow_back</mat-icon>Cancelar
+        </button>
+        <button class="salvar" mat-button (click)="enviar()">
+          <mat-icon>send</mat-icon>Enviar
+        </button>
+      </div>
+    </div>
+  </mat-step>
+</mat-stepper>

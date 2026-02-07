@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0005-criando-tabela-associacao-solicitacao-objetivo-estrategico
+      author: diego.soares
+      changes:
+        - createTable:
+            tableName: solicitacao_objetivo_estrategico
+            columns:
+              - column:
+                  name: solicitacao_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: objetivo_estrategico_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: solicitacao_objetivo_estrategico
+            columnNames: solicitacao_id, objetivo_estrategico_id
+            constraintName: pk_solicitacao_objetivo_estrategico
+
+        - addForeignKeyConstraint:
+            baseTableName: solicitacao_objetivo_estrategico
+            baseColumnNames: solicitacao_id
+            referencedTableName: solicitacao_projeto
+            referencedColumnNames: id
+            constraintName: fk_solicitacao_objetivo_estrategico_solicitacao
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: solicitacao_objetivo_estrategico
+            baseColumnNames: objetivo_estrategico_id
+            referencedTableName: objetivos_estrategicos
+            referencedColumnNames: id
+            constraintName: fk_solicitacao_objetivo_estrategico_objetivo
+            onDelete: CASCADE

@@ -1,0 +1,112 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0004-criando-tabela-solicitacao-projeto
+      author: diego.soares
+      changes:
+        - createTable:
+            tableName: solicitacao_projeto
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: titulo_projeto
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: descricao_projeto
+                  type: TEXT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: responsavel_projeto
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: motivacao_projeto
+                  type: TEXT
+
+              - column:
+                  name: objetivos_especificos_projeto
+                  type: TEXT
+
+              - column:
+                  name: premissas
+                  type: TEXT
+
+              - column:
+                  name: riscos
+                  type: TEXT
+
+              - column:
+                  name: restricoes
+                  type: TEXT
+
+              - column:
+                  name: aprovacao
+                  type: BOOLEAN
+
+              - column:
+                  name: projeto_viavel
+                  type: BOOLEAN
+
+              - column:
+                  name: estimativa_tempo
+                  type: VARCHAR(255)
+
+              - column:
+                  name: estimativa_custo
+                  type: VARCHAR(255)
+
+              - column:
+                  name: ativo
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: CRIADO_POR
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: DATA_CRIACAO
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: MODIFICADO_POR
+                  type: BIGINT
+
+              - column:
+                  name: DATA_MODIFICACAO
+                  type: TIMESTAMP
+
+        - addForeignKeyConstraint:
+            baseTableName: solicitacao_projeto
+            baseColumnNames: CRIADO_POR
+            referencedTableName: usuario
+            referencedColumnNames: id
+            constraintName: fk_solicitacao_projeto_criado_por
+            onDelete: RESTRICT
+
+        - addForeignKeyConstraint:
+            baseTableName: solicitacao_projeto
+            baseColumnNames: MODIFICADO_POR
+            referencedTableName: usuario
+            referencedColumnNames: id
+            constraintName: fk_solicitacao_projeto_modificado_por
+            onDelete: SET NULL

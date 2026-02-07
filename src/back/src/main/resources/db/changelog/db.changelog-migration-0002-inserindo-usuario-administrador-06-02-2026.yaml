@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0002-inserindo-usuario-administrador
+      author: diego.soares
+      changes:
+        - insert:
+            tableName: usuario
+            columns:
+              - column:
+                  name: nome
+                  value: Administrador
+
+              - column:
+                  name: email
+                  value: tsp@saudece.gov.br
+
+              - column:
+                  name: cpf
+                  value: 12345678901
+
+              - column:
+                  name: senha
+                  value: $2a$10$zoYjizhac5yLuCcVRsvX5O9BNwlBbr2cTtEtpODwkJLfd2m7S/L6W
+
+              - column:
+                  name: perfil
+                  value: 1
+
+              - column:
+                  name: criado_por
+                  valueNumeric: 1
+
+              - column:
+                  name: data_criacao
+                  valueDate: 2025-02-06T00:00:00
+
+              - column:
+                  name: ativo
+                  valueBoolean: true
